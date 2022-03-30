@@ -1,0 +1,7 @@
+.separator {
+    border-bottom: #545454 solid 1px;
+    max-width: 880px;
+    opacity: 0.7;
+    margin: 0 auto;
+    margin-bottom: 36px;
+}

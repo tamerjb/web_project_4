@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Around The US</title>
+    <meta name="author" content="Tamer JB" />
+    <meta name="keywords" content=" USA, html, css, learning web development" />
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./pages/index.css" />
+</head>
+
+<body class="body">
+    <header class="header">
+        <img src="./images/around.svg" class="header__logo" alt="around the US">
+    </header>
+
+    <main class="content">
+        <div class="separator"></div>
+        <section class="profile">
+            <img src="./images/avatar.jpg" alt="jACQUES cousteau" class="profile__image">
+            <div class="profile__info">
+                <div class="profile__person">
+                    <h1 class="profile__name">Jacques Cousteau</h1>
+                    <button class="profile__edit-button" type="button">
+                    </button>
+                </div>
+                <p class="profile__title">Explorer</p>
+            </div>
+            <button class="profile__add-button" type="button"></button>
+        </section>
+        <section class="cards">
+            <ul class="cards__list">
+                <li class="card">
+                    <img src="./images/image1.jpg" alt="Yosemite Valley" class="card__image">
+                    <div class="card__info">
+                        <h2 class="card__info-title">Yosemite Valley</h2>
+                        <button class="card__like-button" type="button"></button>
+                    </div>
+                </li>
+                <li class="card">
+                    <img src="./images/image2.jpg" alt="Lake Louise" class="card__image">
+                    <div class="card__info">
+                        <h2 class="card__info-title">Lake Louise</h2>
+                        <button class="card__like-button" type="button"></button>
+                    </div>
+                </li>
+                <li class="card">
+                    <img src="./images/image3.jpg" alt="Blad Mountains" class="card__image">
+                    <div class="card__info">
+                        <h2 class="card__info-title">Bald Mountains</h2>
+                        <button class="card__like-button" type="button"></button>
+                    </div>
+                </li>
+                <li class="card">
+                    <img src="./images/image4.jpg" alt="Latemar" class="card__image">
+                    <div class="card__info">
+                        <h2 class="card__info-title">Latemar</h2>
+                        <button class="card__like-button" type="button"></button>
+                    </div>
+                </li>
+                <li class="card">
+                    <img src="./images/image5.jpg" alt="Vanoise Nationa" class="card__image">
+                    <div class="card__info">
+                        <h2 class="card__info-title">Vanoise Nationa...</h2>
+                        <button class="card__like-button" type="button"></button>
+                    </div>
+                </li>
+                <li class="card">
+                    <img src="./images/image6.jpg" alt="" class="card__image">
+                    <div class="card__info">
+                        <h2 class="card__info-title">Lago di Braies</h2>
+                        <button class="card__like-button" type="button"></button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__copyrights">© 2021 Around The U.S.</p>
+    </footer>
+    <div class="popup">
+        <div class="popup__container">
+            <button class="popup__button-close" type="button"></button>
+            <h2 class="popup__title">Edit profile</h2>
+            <form action="submit" class="form popup__form">
+                <fieldset class="form__fieldset">
+                    <input type="text" name="name" placeholder="Name" required class="form__input">
+                    <input type="text" name="title" placeholder="About me" required class="form__input">
+                </fieldset>
+                <fieldset class="form__fieldset">
+                    <button class="form__button" type="submit">Save</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <script src="./scripts/index.js"></script>
+</body>
+
+</html>
