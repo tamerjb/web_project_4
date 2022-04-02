@@ -12,6 +12,7 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 1.22;
+    margin: 0;
 }
 
 .popup_opened {
@@ -58,20 +59,27 @@
 
 @media screen and (max-width: 524px) {
     .popup {
-        padding-left: 19px;
-        padding-right: 19px;
+        max-width: 282px;
+        max-height: 322px;
+        margin: 123px 19px;
         box-sizing: border-box;
     }
 
     .popup__container {
         width: 100%;
-        gap: 67px;
+        gap: 76px;
         padding: 25px 22px;
     }
 
     .popup__button-close {
         background-size: 20px 20px;
         top: -49px;
-        right: 7px;
+        right: -7px;
+    }
+
+    .popup__title {
+        font-weight: 900;
+        font-size: 18px;
+        line-height: 22px;
     }
 }

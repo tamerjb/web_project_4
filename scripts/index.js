@@ -24,7 +24,8 @@ function formHandler(event) {
   event.preventDefault();
   profileName.textContent = inputName.value;
   profileTitle.textContent = inputTitle.value;
-  closeForm();
+    popup.classList.remove("popup_opened");
+
 }
 
 //eventListener
