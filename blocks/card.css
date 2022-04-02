@@ -1,8 +1,6 @@
 .card {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    min-height: 367px;
+    margin: 0;
+    padding: 0;
 }
 
 .card__image {
@@ -15,14 +13,11 @@
 
 .card__info {
     background-color: #fff;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
     display: flex;
     gap: 8px;
     justify-content: center;
     align-items: center;
-    padding: 25px 15px 24px 21px;
+    padding: 20px 15px 24px 21px;
     border-radius: 0 0 10px 10px;
 }
 
@@ -44,7 +39,7 @@
     background-color: transparent;
     border: none;
     padding: 0;
-    background-image: url(../images/icons/like.jpg);
+    background-image: url(../images/icons/like.svg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

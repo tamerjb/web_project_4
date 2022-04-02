@@ -2,7 +2,7 @@
 
 ### Overview
 
-a project that showcases a trip to the US by a particular traveller. All the elements are displayed correctly on some screen sizes. The main skill learned for this project is DOM  with Javascript. you can edit the name and the title 
+a project that showcases a trip to the US by a particular traveller. All the elements are displayed correctly on some screen sizes. The main skill learned for this project is DOM  with Javascript. you can edit the name and the title
 #### Design File Used:
 
 - [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
@@ -19,7 +19,7 @@ a project that showcases a trip to the US by a particular traveller. All the ele
 
 # Github Pages Link:
 
-- [Link to the github pages link](https://github.com/tamerjb/web_project_4.git)
+- [Link to the github pages link](https://tamerjb.github.io/web_project_4/)
 
 ## Plan on improving the project
 
