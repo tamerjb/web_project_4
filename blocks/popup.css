@@ -57,24 +57,25 @@
     font-weight: 900;
 }
 
-@media screen and (max-width: 524px) {
-    .popup {
-        max-width: 282px;
-        max-height: 322px;
-        margin: 123px 19px;
-        box-sizing: border-box;
-    }
-
-    .popup__container {
-        width: 100%;
-        gap: 76px;
-        padding: 25px 22px;
-    }
-
+@media screen and (max-width: 400px) {
     .popup__button-close {
         background-size: 20px 20px;
         top: -49px;
         right: -7px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .popup {
+        max-width: 282px;
+        padding: 0 19px;
+        margin: 0;
+
+    }
+
+    .popup__container {
+        gap: 76px;
+        padding: 25px 22px;
     }
 
     .popup__title {
