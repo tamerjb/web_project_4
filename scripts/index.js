@@ -63,24 +63,34 @@ const initialCards = [
     link: "https://code.s3.yandex.net/web-code/lago.jpg",
   },
 ];
+//create card
 function createcard(info){
   const cardtemplate = document.querySelector("#card-template").content;
   const cardelement = cardtemplate.querySelector(".card").cloneNode(true);
-  const cardtitle = cardelement.querySelector(".card__title");
+  const cardtitle = cardelement.querySelector(".card__info-title");
+  const likebutton = cardelement.querySelector(".card__like-button");
+  const cardimage = cardelement.querySelector(".card__image");
+  const deletebutton = cardelement.querySelector(".card__image-trash");
+  cardtitle.textContent = info.name;
+  cardimage.src = info.link;
+  cardimage.alt = `place in ${info.name}`;
 
+  cardimage.addEventListener("click", () => previewimage(info));
+  deletebutton.addEventListener("click", () => cardelement.remove());
+  likebutton.addEventListener("click", () =>
+    toggleClass(likebutton, "card__like-button_active")
+
+  );
+  return cardelement;
 }
-
-// saveButton.addEventListener("click", closeForm);
-
-// let saveButton = form.querySelector(".form__button");
-// let cards = document.querySelector(".cards");
-// let likebuttons = cards.querySelectorAll(".card__like-button");
-
-// for (let i = 0; i < likebuttons.length; i++) {
-//   let likeButton = likebuttons[i];
-//   function toggleLike() {
-//     likeButton.classList.toggle("card__like-button_active");
-//   }
-//   likeButton.addEventListener("click", toggleLike);
-// }
+//funcation toggles class on/off
+function toggleClass(item,x) {
+  item.classList.toggle(x);
+}
+//adds the card to the list
+function addcard(card, list) {
+  list.prepend(createcard(card));
+}
+//adding the array
+initialCards.forEach((card) => addcard(card, cardlist));
 

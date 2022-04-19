@@ -7,8 +7,10 @@
     width: 100%;
     display: block;
     border-radius: 10px 10px 0 0;
-    min-height: 285px;
+    min-height: 282px;
+    max-height: 282px;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .card__image-trash {
@@ -61,6 +63,7 @@
     min-width: 21px;
     min-height: 19px;
     transition: all 0.2s ease-out;
+    cursor: pointer;
 }
 
 .card__like-button:hover {
