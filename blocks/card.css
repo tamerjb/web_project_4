@@ -11,6 +11,21 @@
     object-fit: cover;
 }
 
+.card__image-trash {
+    background-image: url('../images/icons/trash.svg');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    border: 0px;
+    width: 18px;
+    height: 19px;
+    position: absolute;
+    right: 16px;
+    top: 18px;
+    transition: opacity linear 0.45s;
+}
+
 .card__info {
     background-color: #fff;
     display: flex;
