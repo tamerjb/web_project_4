@@ -7,7 +7,6 @@
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
-    display: none;
     font-family: "Inter", Arial, sans-serif;
     font-weight: 400;
     font-size: 18px;
@@ -73,8 +72,6 @@
     align-self: flex-end;
     left: 30px;
     position: relative;
-
-
 }
 
 .popup__button-close:hover {
