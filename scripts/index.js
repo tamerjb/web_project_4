@@ -25,7 +25,7 @@ const imgPrevCloseButton = imgPrev.querySelector(
   ".popup__close-button"
 );
 
-const placeAdd = document.querySelector(".place__add");
+const placeAdd = document.querySelector(".popup__place");
 const placeClose = placeAdd.querySelector(".popup__button-close-type-place");
 
 
