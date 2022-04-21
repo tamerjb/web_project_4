@@ -20,9 +20,9 @@ const placeForm = document.querySelector(".popup__form_type_add-place");
 const placeName = placeForm.querySelector(".form__input_type_place-name");
 const placeURL = placeForm.querySelector(".form__input_type_place-url");
 
-const imgPrev = document.querySelector(".popup_type_image-prev");
+const imgPrev = document.querySelector(".popup__image-prev");
 const imgPrevCloseButton = imgPrev.querySelector(
-  ".popup__close-button_preview"
+  ".popup__image-prev-container_close"
 );
 
 const placeAdd = document.querySelector(".popup_type_add-place");
