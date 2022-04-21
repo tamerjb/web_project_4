@@ -37,7 +37,7 @@
     <footer class="footer">
         <p class="footer__copyrights">© 2021 Around The U.S.</p>
     </footer>
-    <div class="popup popup__type_edit-profile">
+    <div class="popup ">
         <div class="popup__container">
             <button class="popup__button-close" type="button"></button>
             <h2 class="popup__title">Edit profile</h2>
@@ -53,19 +53,19 @@
         </div>
     </div>
 
-    <div class="popup popup__type_add-place">
+    <div class="popup popup__type-add-place">
         <div class="popup__container">
-            <button class="popup__button-close popup__button-close_type_place" type="button"></button>
+            <button class="popup__button-close popup__button-close-type-place" type="button"></button>
             <h2 class="popup__title">New Place</h2>
-            <form action="submit" class="form popup__form popup__form_type_add-place">
+            <form action="submit" class="form popup__form popup__form-type-add-place">
                 <fieldset class="form__fieldset">
                     <input type="text" name="card-title" placeholder="Title"
-                        class="form__input form__input_type_place-name" required />
+                        class="form__input form__input-type-place-name" required />
                     <input type="url" name="card-link" placeholder="Image link"
-                        class="form__input form__input_type_place-url" required />
+                        class="form__input form__input-type-place-url" required />
                 </fieldset>
                 <fieldset class="form__fieldset">
-                    <button class="form__button form__button_type_place" type="submit">
+                    <button class="form__button" type="submit">
                         Save
                     </button>
                 </fieldset>
