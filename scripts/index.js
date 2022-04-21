@@ -20,7 +20,7 @@ const placeForm = document.querySelector(".popup__form_type_add-place");
 const placeName = placeForm.querySelector(".form__input_type_place-name");
 const placeURL = placeForm.querySelector(".form__input_type_place-url");
 
-const imgPrev = document.querySelector(".popup__preview");
+const imgPrev = document.querySelector(".popup__preview-img");
 const imgPrevCloseButton = imgPrev.querySelector(
   ".popup__close-button"
 );
