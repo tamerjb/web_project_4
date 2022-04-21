@@ -50,7 +50,7 @@
     padding: 20px;
 }
 
-.popup__image-prev-container {
+.popup__preview-container {
     padding: 0px;
     background-color: transparent;
     color: #fff;
@@ -60,7 +60,7 @@
     flex-direction: column;
 }
 
-.popup__image-prev-container_close {
+.popup__close-button {
     cursor: pointer;
     transition: all 0.2s ease-out;
     background-color: transparent;
