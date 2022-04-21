@@ -20,12 +20,12 @@ const placeForm = document.querySelector(".popup__form_type_add-place");
 const placeName = placeForm.querySelector(".form__input_type_place-name");
 const placeURL = placeForm.querySelector(".form__input_type_place-url");
 
-const imgPrev = document.querySelector(".popup__preview");
+const imgPrev = document.querySelector(".popup-prev");
 const imgPrevCloseButton = imgPrev.querySelector(
   ".popup__close-button"
 );
 
-const placeAdd = document.querySelector(".popup_type_add-place");
+const placeAdd = document.querySelector(".popup__type_add-place");
 const placeClose = placeAdd.querySelector(".popup__button-close_type_place");
 
 
