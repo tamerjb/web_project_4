@@ -1,19 +1,19 @@
 ///////////////////////////////////////////
 //////// Selectors ///////////
 ///////////////////////////////////////////
-let form = document.querySelector(".form");
-let profile = document.querySelector(".profile");
+let profileForm = document.querySelector(".form");
+const profile = document.querySelector(".profile");
 let profileName = profile.querySelector(".profile__name");
-let editProfileButton = profile.querySelector(".profile__edit-button");
+const editProfileButton = profile.querySelector(".profile__edit-button");
 let popup = document.querySelector(".popup");
-let closeButton = popup.querySelector(".popup__button-close");
+const closeButton = popup.querySelector(".popup__button-close");
 let profileTitle = profile.querySelector(".profile__title");
 let inputName = form.querySelector(".form__input[name='name']");
 let inputTitle = form.querySelector(".form__input[name='title']");
 const cards = document.querySelector(".cards");
 
 
-const cardlist = cards.querySelector(".cards__list");
+const cardList = cards.querySelector(".cards__list");
 const addForm = profile.querySelector(".profile__add-button");
 
 const placeForm = document.querySelector(".popup__form-type-add-place");
@@ -33,38 +33,55 @@ const placeClose = placeAdd.querySelector(".popup__button-close-type-place");
 ///////////////////////////////////////////
 //////// Functions ///////////
 ///////////////////////////////////////////
-function EditNameForm() { //toggle name form
+function fillProfileForm() { //this function set the input fields value.
   inputName.value = profileName.textContent;
   inputTitle.value = profileTitle.textContent;
-  popup.classList.toggle("popup_opened");
 }
 
-function toggleClass(item, x) { //function toggles(add/remove) a specifc class, *item* is selcetor name / x is the class that want to add/remove .
-  item.classList.toggle(x);
-}
-
-function formHandler(event) { //saves the name after editing
-  event.preventDefault();
+function saveProfileForm() {
   profileName.textContent = inputName.value;
   profileTitle.textContent = inputTitle.value;
+}
+
+function openPopup(popup) {
+  popup.classList.add("popup_opened");
+}
+
+function closePopup(popup) {
   popup.classList.remove("popup_opened");
 }
 
+
+function openProfileForm() { //opens the edit name form
+  fillProfileForm();
+  openPopup(popup);
+}
+
+
+function toggleClass(item, className) { //function toggles(add/remove) a specifc class, *item* is selcetor name / x is the class that want to add/remove .
+  item.classList.toggle(className);
+}
+
+function handleProfileFormSubmit() { //saves the name after editing
+  preventDefault();
+  saveProfileForm();
+  closePopup(popup);
+}
+
 function addCard(event) { //this function to add the card manullay
-
   event.preventDefault();
-
   renderCard({
     name: placeName.value,
     link: placeURL.value
-  }, cardlist);
+  }, cardList);
 
-  toggleClass(placeAdd, "popup_opened");
+  // toggleClass(placeAdd, "popup_opened");
+  closePopup(placeAdd);
   placeForm.reset();
 }
 
 function renderCard(card, list) { // adds the card to the first place
-  list.prepend(createcard(card));
+  list.prepend(createCard(card));
 }
 
 function previewImage(card) {
@@ -74,7 +91,8 @@ function previewImage(card) {
   popupImage.alt = `A beautiful place in ${card.name}`;
   popupCaption.textContent = card.name;
   // ToggleAddPopup(imgPrev);
-  toggleClass(imgPrev, "popup_opened");
+  // toggleClass(imgPrev, "popup_opened");
+  openPopup(imgPrev);
 }
 
 
@@ -82,13 +100,14 @@ function previewImage(card) {
 //////// EventListeners ///////////
 ///////////////////////////////////////////
 
-editProfileButton.addEventListener("click", EditNameForm);
-closeButton.addEventListener("click", EditNameForm);
-form.addEventListener("submit", formHandler);
-addForm.addEventListener("click", () => toggleClass(placeAdd, "popup_opened")); //open photo add form
-placeClose.addEventListener("click", () => toggleClass(placeAdd, "popup_opened")); // close add form
-placeForm.addEventListener("submit", addCard) //this listining to event submit (save)
-imgPrevCloseButton.addEventListener("click", () => toggleClass(imgPrev, "popup_opened"));
+editProfileButton.addEventListener("click", () => openProfileForm()); // edit profile open popup
+closeButton.addEventListener("click", () => closePopup(popup)); // closes the poup when click on X.
+addForm.addEventListener("click", () => openPopup(placeAdd)); //open the add photo form.
+placeClose.addEventListener("click", () => closePopup(placeAdd)); // close add form
+imgPrev.addEventListener("click", () => closePopup(imgPrev)); // closes the image preview
+profileForm.addEventListener("submit", () => handleProfileFormSubmit()); // saves the profile info + prevents the site submit .
+placeForm.addEventListener("submit", () => addCard(event)) //this listining to event submit (save)
+
 
 
 
@@ -119,29 +138,27 @@ const initialCards = [{
     link: "https://code.s3.yandex.net/web-code/lago.jpg",
   },
 ];
+/** This line adds the array to the page */
+
+initialCards.forEach((card) => renderCard(card, cardList));
+
 //create card
-function createcard(info) {
-  const cardtemplate = document.querySelector("#card-template").content;
-  const cardelement = cardtemplate.querySelector(".card").cloneNode(true);
-  const cardtitle = cardelement.querySelector(".card__info-title");
-  const likebutton = cardelement.querySelector(".card__like-button");
-  const cardimage = cardelement.querySelector(".card__image");
-  const deletebutton = cardelement.querySelector(".card__image-trash");
-  cardtitle.textContent = info.name;
-  cardimage.src = info.link;
-  cardimage.alt = `place in ${info.name}`;
+function createCard(card) {
+  const cardTemplate = document.querySelector("#card-template");
+  const cardTemplateContent = cardTemplate.content;
+  const cardElement = cardTemplateContent.querySelector(".card").cloneNode(true);
+  const cardTitle = cardElement.querySelector(".card__info-title");
+  const likeButton = cardElement.querySelector(".card__like-button");
+  const cardImage = cardElement.querySelector(".card__image");
+  const deleteButton = cardElement.querySelector(".card__image-trash");
 
-  cardimage.addEventListener("click", () => previewImage(info));
-  deletebutton.addEventListener("click", () => cardelement.remove());
-  likebutton.addEventListener("click", () =>
-    toggleClass(likebutton, "card__like-button_active"));
-  return cardelement;
-}
-//funcation toggles class on/off
+  cardTitle.textContent = card.name;
+  cardImage.src = card.link;
+  cardImage.alt = `place in ${card.name}`;
 
-//adds the card to the list
-function addcard(card, list) {
-  list.prepend(createcard(card));
+  cardImage.addEventListener("click", () => previewImage(card));
+  deleteButton.addEventListener("click", () => cardElement.remove());
+  likeButton.addEventListener("click", () =>
+    toggleClass(likeButton, "card__like-button_active"));
+  return cardElement;
 }
-//adding the array
-initialCards.forEach((card) => addcard(card, cardlist));
