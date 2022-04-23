@@ -13,15 +13,18 @@
     line-height: 1.22;
     margin: 0 auto;
     display: flex;
-    transition: visibility 0s 0.5s,
-        opacity 0.5s linear;
+    opacity: 0;
+    transition: visibility 0s 0.5s, opacity 0.5s linear;
     visibility: hidden;
+    pointer-events: none;
 }
 
 .popup_opened {
     visibility: visible;
     transition: visibility 0s,
         opacity 0.5s linear;
+    pointer-events: all;
+    opacity: 1;
 }
 
 .popup__container {

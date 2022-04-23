@@ -1,7 +1,7 @@
 ///////////////////////////////////////////
 //////// Selectors ///////////
 ///////////////////////////////////////////
-let profileForm = document.querySelector(".form");
+const profileForm = document.querySelector(".form");
 const profile = document.querySelector(".profile");
 let profileName = profile.querySelector(".profile__name");
 const editProfileButton = profile.querySelector(".profile__edit-button");
@@ -12,16 +12,16 @@ let inputName = form.querySelector(".form__input[name='name']");
 let inputTitle = form.querySelector(".form__input[name='title']");
 const cards = document.querySelector(".cards");
 
-
+const cardTemplate = document.querySelector("#card-template");
 const cardList = cards.querySelector(".cards__list");
 const addForm = profile.querySelector(".profile__add-button");
-
+const profileEdit = document.querySelector(".popup-edit-profile");
 const placeForm = document.querySelector(".popup__form-type-add-place");
 const placeName = placeForm.querySelector(".form__input-type-place-name");
 const placeURL = placeForm.querySelector(".form__input-type-place-url");
 
-const imgPrev = document.querySelector(".popup-prev");
-const imgPrevCloseButton = imgPrev.querySelector(
+const imgPreview = document.querySelector(".popup-prev");
+const imgPreviewCloseButton = imgPreview.querySelector(
   ".popup__close-button"
 );
 
@@ -41,6 +41,8 @@ function fillProfileForm() { //this function set the input fields value.
 function saveProfileForm() {
   profileName.textContent = inputName.value;
   profileTitle.textContent = inputTitle.value;
+  closePopup(popup);
+
 }
 
 function openPopup(popup) {
@@ -62,10 +64,9 @@ function toggleClass(item, className) { //function toggles(add/remove) a specifc
   item.classList.toggle(className);
 }
 
-function handleProfileFormSubmit() { //saves the name after editing
-  preventDefault();
+function handleProfileFormSubmit(event) { //saves the name after editing
+  event.preventDefault();
   saveProfileForm();
-  closePopup(popup);
 }
 
 function addCard(event) { //this function to add the card manullay
@@ -85,14 +86,12 @@ function renderCard(card, list) { // adds the card to the first place
 }
 
 function previewImage(card) {
-  const popupImage = imgPrev.querySelector(".popup__image");
-  const popupCaption = imgPrev.querySelector(".popup__caption");
+  const popupImage = imgPreview.querySelector(".popup__image");
+  const popupCaption = imgPreview.querySelector(".popup__caption");
   popupImage.src = card.link;
   popupImage.alt = `A beautiful place in ${card.name}`;
   popupCaption.textContent = card.name;
-  // ToggleAddPopup(imgPrev);
-  // toggleClass(imgPrev, "popup_opened");
-  openPopup(imgPrev);
+  openPopup(imgPreview);
 }
 
 
@@ -104,8 +103,8 @@ editProfileButton.addEventListener("click", () => openProfileForm()); // edit pr
 closeButton.addEventListener("click", () => closePopup(popup)); // closes the poup when click on X.
 addForm.addEventListener("click", () => openPopup(placeAdd)); //open the add photo form.
 placeClose.addEventListener("click", () => closePopup(placeAdd)); // close add form
-imgPrev.addEventListener("click", () => closePopup(imgPrev)); // closes the image preview
-profileForm.addEventListener("submit", () => handleProfileFormSubmit()); // saves the profile info + prevents the site submit .
+imgPreview.addEventListener("click", () => closePopup(imgPreview)); // closes the image preview
+profileEdit.addEventListener("submit", () => handleProfileFormSubmit(event)); // saves the profile info + prevents the site submit .
 placeForm.addEventListener("submit", () => addCard(event)) //this listining to event submit (save)
 
 
@@ -144,7 +143,6 @@ initialCards.forEach((card) => renderCard(card, cardList));
 
 //create card
 function createCard(card) {
-  const cardTemplate = document.querySelector("#card-template");
   const cardTemplateContent = cardTemplate.content;
   const cardElement = cardTemplateContent.querySelector(".card").cloneNode(true);
   const cardTitle = cardElement.querySelector(".card__info-title");
