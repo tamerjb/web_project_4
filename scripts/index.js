@@ -3,13 +3,13 @@
 ///////////////////////////////////////////
 const profileForm = document.querySelector(".form");
 const profile = document.querySelector(".profile");
-let profileName = profile.querySelector(".profile__name");
+const profileName = profile.querySelector(".profile__name");
 const editProfileButton = profile.querySelector(".profile__edit-button");
-let popup = document.querySelector(".popup");
-const closeButton = popup.querySelector(".popup__button-close");
-let profileTitle = profile.querySelector(".profile__title");
-let inputName = form.querySelector(".form__input[name='name']");
-let inputTitle = form.querySelector(".form__input[name='title']");
+const profilePopup = document.querySelector(".popup");
+const profilePopupCloseButton = profilePopup.querySelector(".popup__button-close");
+const profileTitle = profile.querySelector(".profile__title");
+const inputName = form.querySelector(".form__input[name='name']");
+const inputTitle = form.querySelector(".form__input[name='title']");
 const cards = document.querySelector(".cards");
 
 const cardTemplate = document.querySelector("#card-template");
@@ -28,7 +28,7 @@ const imgPreviewCloseButton = imgPreview.querySelector(
 const placeAdd = document.querySelector(".popup-place");
 const placeClose = placeAdd.querySelector(".popup__button-close-type-place");
 
-
+//thanks for the comments , i have sent the wrong JS file xD.
 
 ///////////////////////////////////////////
 //////// Functions ///////////
@@ -41,22 +41,22 @@ function fillProfileForm() { //this function set the input fields value.
 function saveProfileForm() {
   profileName.textContent = inputName.value;
   profileTitle.textContent = inputTitle.value;
-  closePopup(popup);
+  closePopup(profilePopup);
 
 }
 
-function openPopup(popup) {
-  popup.classList.add("popup_opened");
+function openPopup(profilePopup) {
+  profilePopup.classList.add("popup_opened");
 }
 
-function closePopup(popup) {
-  popup.classList.remove("popup_opened");
+function closePopup(profilePopup) {
+  profilePopup.classList.remove("popup_opened");
 }
 
 
 function openProfileForm() { //opens the edit name form
   fillProfileForm();
-  openPopup(popup);
+  openPopup(profilePopup);
 }
 
 
@@ -100,7 +100,7 @@ function previewImage(card) {
 ///////////////////////////////////////////
 
 editProfileButton.addEventListener("click", () => openProfileForm()); // edit profile open popup
-closeButton.addEventListener("click", () => closePopup(popup)); // closes the poup when click on X.
+profilePopupCloseButton.addEventListener("click", () => closePopup(profilePopup)); // closes the poup when click on X.
 addForm.addEventListener("click", () => openPopup(placeAdd)); //open the add photo form.
 placeClose.addEventListener("click", () => closePopup(placeAdd)); // close add form
 imgPreview.addEventListener("click", () => closePopup(imgPreview)); // closes the image preview
