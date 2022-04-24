@@ -22,10 +22,10 @@ a project that showcases a trip to the US by a particular traveller. All the ele
 - [Link to the github pages link](https://tamerjb.github.io/web_project_4/)
 
 ## Plan on improving the project
-1.the site will be avaible online by putting it on online DB.
-2.add videos also not only photos .
-3.you can add comments to the photos .
-4.save button- there will be save button that saves the file on your PC.
+* the site will be avaible online by putting it on online DB.
+* add videos also not only photos .
+* you can add comments to the photos .
+* save button- there will be save button that saves the file on your PC.
 
 
 
