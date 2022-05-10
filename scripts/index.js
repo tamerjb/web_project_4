@@ -28,7 +28,7 @@ const imgPreviewCloseButton = imgPreview.querySelector(
 const placeAdd = document.querySelector(".popup-place");
 const placeClose = placeAdd.querySelector(".popup__button-close-type-place");
 
-//thanks for the comments , i have sent the wrong JS file xD.
+
 
 ///////////////////////////////////////////
 //////// Functions ///////////
@@ -47,10 +47,16 @@ function saveProfileForm() {
 
 function openPopup(profilePopup) {
   profilePopup.classList.add("popup_opened");
+  document.addEventListener("keydown", closeOnEscape);
+  document.addEventListener("mousedown", closeOnClickOutside);
+
 }
 
 function closePopup(profilePopup) {
   profilePopup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closeOnEscape);
+  document.removeEventListener("mousedown", closeOnClickOutside);
+
 }
 
 
@@ -94,6 +100,20 @@ function previewImage(card) {
   openPopup(imgPreview);
 }
 
+function closeOnEscape(e) {
+  const popupOpened = document.querySelector(".popup_opened");
+
+  if (e.key === "Escape") {
+    closePopup(popupOpened);
+  }
+}
+
+function closeOnClickOutside(e) {
+  const popupOpened = document.querySelector(".popup_opened");
+  if (e.target.classList.contains("popup")) {
+    closePopup(popupOpened);
+  }
+}
 
 ///////////////////////////////////////////
 //////// EventListeners ///////////
@@ -160,3 +180,6 @@ function createCard(card) {
     toggleClass(likeButton, "card__like-button_active"));
   return cardElement;
 }
+
+
+/////////////////////////////////////////////

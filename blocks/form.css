@@ -24,9 +24,37 @@
     border-bottom: rgba(0, 0, 0, 0.2) 1px solid;
 }
 
+.form__input:focus {
+    outline: none;
+}
+
+
+.form__input-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.form__input-error {
+
+    font-size: 12px;
+    line-height: 15px;
+    color: #FF0000;
+    margin-top: 5px;
+}
+
+.form__input-errorline {
+    border-bottom: 1px solid #FF0000;
+}
+
+.form__input-type-place-name {}
+
+.place-url-input-error {}
+
 .form__input::placeholder {
     color: #000;
 }
+
 
 .form__button {
     background: #000;
