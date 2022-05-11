@@ -1,14 +1,43 @@
 // enabling validation by calling enableValidation()
 // pass all the settings on call
+const hideInputError = () => {
+
+}
+const showInputError = (input, formEl) => {
+    const errorSpan = formEl.querySelector(`.${input.id}-error`);
+    console.log(errorSpan);
+}
+
+const checkInputValidity = (formEl, input, settings) => {
+    if (input.validity.valid) {
+        hideInputError();
+    } else {
+        showInputError(input, formEl);
+    }
+
+}
+const setEvenetListeners = (formEl, settings) => {
+    const inputs = Array.from(formEl.querySelectorAll(settings.inputSelector));
+    inputs.forEach((input) => {
+        input.addEventListener('input', (e) => {
+            console.log(e)
+            // check validity
+            checkInputValidity(formEl, input, settings);
+            // add error msg/class
+            //toggle the button
+        })
+    })
+
+}
+
 const enableValidation = (settings) => {
-    const formElements = Array.from(document.querySelectorAll(settings.formSelector));
-    formElements.forEach(formEl => {
-        formElements.addEvenetlistener("submit", (e) => {
+    const formEl = Array.from(document.querySelectorAll(settings.formSelector));
+    formEl.forEach((formEl) => {
+        formEl.addEventListener("submit", (e) => {
             e.preventdeafult();
         })
         //selecting the inputs
-        const inputs = formEl.querySelectorAll(settings.inputSelector);
-
+        setEvenetListeners(formEl, settings);
     });
 };
 
