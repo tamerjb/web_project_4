@@ -48,24 +48,19 @@
     border-bottom: 1px solid #FF0000;
 }
 
-.form__input-type-profile-name {}
+/* .form__input-type-profile-name {}
 
 .form__input-type-profile-subname {}
 
 .form__input-type-place-name {}
 
-.form__input-type-place-url {}
+.form__input-type-place-url {} */
 
 .form__input::placeholder {
     color: #000;
 }
 
-.form__button_disabled {
-    background-color: white;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    color: rgba(0, 0, 0, 0.2);
-    cursor: default;
-}
+
 
 .form__button {
     background: #000;
@@ -76,6 +71,14 @@
     padding: 18.49px;
     cursor: pointer;
     transition: background ease-out 0.3s;
+}
+
+.form__button_disabled,
+.form__button_disabled:hover {
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.2);
+    cursor: default;
 }
 
 .form__button:hover {

@@ -41,6 +41,8 @@ const hasValidInputs = (inputList) => {
 const toggleButton = (inputList, button, settings) => {
     if (hasValidInputs(inputList)) {
         button.disabled = false;
+        button.classList.remove(settings.inactiveButtonClass);
+
     } else {
         button.disabled = true;
         button.classList.add(settings.inactiveButtonClass);
@@ -49,7 +51,7 @@ const toggleButton = (inputList, button, settings) => {
 }
 const setEvenetListeners = (formEl, settings) => {
     const inputList = Array.from(formEl.querySelectorAll(settings.inputSelector));
-    const submitButton = Array.from(formEl.querySelector(settings.submitButtonSelector));
+    const submitButton = formEl.querySelector(settings.submitButtonSelector);
 
     inputList.forEach((input) => {
         input.addEventListener('input', (e) => {
