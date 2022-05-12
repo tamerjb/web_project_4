@@ -41,6 +41,7 @@
     line-height: 15px;
     color: #FF0000;
     margin-top: 5px;
+
 }
 
 .form__input-errorline {
@@ -59,8 +60,7 @@
     color: #000;
 }
 
-.form__button_disabled,
-.form__button_disabled:hover {
+.form__button_disabled {
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.2);
     color: rgba(0, 0, 0, 0.2);
