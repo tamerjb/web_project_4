@@ -8,14 +8,12 @@ const hideInputError = (input, formEl, settings) => {
     input.classList.remove(settings.errorClass);
 
 }
-const showInputError = (input, formEl, {
-    errorClass
-}) => {
+const showInputError = (input, formEl, settings) => {
     const errorElement = formEl.querySelector(`#${input.id}-error`);
     // add error msg/class
     errorElement.textContent = input.validationMessage;
     // input.classList.add(errorClass);
-    input.classList.add("form__input-errorline");
+    input.classList.add(settings.errorClass);
 
 
 }

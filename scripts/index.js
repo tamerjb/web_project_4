@@ -25,8 +25,8 @@ const imgPreviewCloseButton = imgPreview.querySelector(
   ".popup__close-button"
 );
 
-const placeAdd = document.querySelector(".popup-place");
-const placeClose = placeAdd.querySelector(".popup__button-close-type-place");
+const placeForm = document.querySelector(".popup-place");
+const placeClose = placeForm.querySelector(".popup__button-close-type-place");
 
 
 
@@ -68,7 +68,6 @@ function togglePopupSubmitButton(popup) {
 function openProfileForm() { //opens the edit name form
   fillProfileForm();
   openPopup(profilePopup);
-  togglePopupSubmitButton(profileForm);
 
 }
 
@@ -89,9 +88,10 @@ function addCard(event) { //this function to add the card manullay
     link: placeURL.value
   }, cardList);
 
-  // toggleClass(placeAdd, "popup_opened");
-  closePopup(placeAdd);
+  // toggleClass(placeForm, "popup_opened");
+  closePopup(placeForm);
   placePopupForm.reset();
+  togglePopupSubmitButton(placeForm);
 }
 
 function renderCard(card, list) { // adds the card to the first place
@@ -133,8 +133,8 @@ function closeOnClickOutside(evt) {
 
 editProfileButton.addEventListener("click", () => openProfileForm()); // edit profile open popup
 profilePopupCloseButton.addEventListener("click", () => closePopup(profilePopup)); // closes the poup when click on X.
-addCardPopup.addEventListener("click", () => openPopup(placeAdd)); //open the add photo form.
-placeClose.addEventListener("click", () => closePopup(placeAdd)); // close add form
+addCardPopup.addEventListener("click", () => openPopup(placeForm)); //open the add photo form.
+placeClose.addEventListener("click", () => closePopup(placeForm)); // close add form
 imgPreview.addEventListener("click", () => closePopup(imgPreview)); // closes the image preview
 profileEdit.addEventListener("submit", () => handleProfileFormSubmit(event)); // saves the profile info + prevents the site submit .
 placePopupForm.addEventListener("submit", () => addCard(event)) //this listining to event submit (save)
