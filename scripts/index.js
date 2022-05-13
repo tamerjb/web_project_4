@@ -14,11 +14,11 @@ const cards = document.querySelector(".cards");
 
 const cardTemplate = document.querySelector("#card-template");
 const cardList = cards.querySelector(".cards__list");
-const addForm = profile.querySelector(".profile__add-button");
+const addCardPopup = profile.querySelector(".profile__add-button");
 const profileEdit = document.querySelector(".popup-edit-profile");
-const placeForm = document.querySelector(".popup__form-type-add-place");
-const placeName = placeForm.querySelector(".form__input-type-place-name");
-const placeURL = placeForm.querySelector(".form__input-type-place-url");
+const placePopupForm = document.querySelector(".popup__form-type-add-place");
+const placeName = placePopupForm.querySelector(".form__input-type-place-name");
+const placeURL = placePopupForm.querySelector(".form__input-type-place-url");
 
 const imgPreview = document.querySelector(".popup-prev");
 const imgPreviewCloseButton = imgPreview.querySelector(
@@ -45,24 +45,31 @@ function saveProfileForm() {
 
 }
 
-function openPopup(profilePopup) {
-  profilePopup.classList.add("popup_opened");
+function openPopup(popup) {
+  popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeOnEscape);
-  document.addEventListener("mousedown", closeOnClickOutside);
+  popup.addEventListener("mousedown", closeOnClickOutside);
 
 }
 
-function closePopup(profilePopup) {
-  profilePopup.classList.remove("popup_opened");
+function closePopup(popup) {
+  popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closeOnEscape);
-  document.removeEventListener("mousedown", closeOnClickOutside);
+  popup.removeEventListener("mousedown", closeOnClickOutside);
 
 }
 
+function togglePopupSubmitButton(popup) {
+  const inputList = Array.from(popup.querySelectorAll(settings.inputSelector));
+  const submitButton = popup.querySelector(settings.submitButtonSelector);
+  toggleButton(inputList, submitButton, settings);
+}
 
 function openProfileForm() { //opens the edit name form
   fillProfileForm();
   openPopup(profilePopup);
+  togglePopupSubmitButton(profileForm);
+
 }
 
 
@@ -84,7 +91,7 @@ function addCard(event) { //this function to add the card manullay
 
   // toggleClass(placeAdd, "popup_opened");
   closePopup(placeAdd);
-  placeForm.reset();
+  placePopupForm.reset();
 }
 
 function renderCard(card, list) { // adds the card to the first place
@@ -100,18 +107,23 @@ function previewImage(card) {
   openPopup(imgPreview);
 }
 
-function closeOnEscape(e) {
+function closeOnEscape(evt) {
   const popupOpened = document.querySelector(".popup_opened");
 
-  if (e.key === "Escape") {
+  if (evt.key === "Escape") {
     closePopup(popupOpened);
   }
 }
 
-function closeOnClickOutside(e) {
-  const popupOpened = document.querySelector(".popup_opened");
-  if (e.target.classList.contains("popup")) {
-    closePopup(popupOpened);
+// function closeOnClickOutside(e) {
+//   const popupOpened = document.querySelector(".popup_opened");
+//   if (e.target.classList.contains("popup")) {
+//     closePopup(popupOpened);
+//   }
+// }
+function closeOnClickOutside(evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.target)
   }
 }
 
@@ -121,11 +133,11 @@ function closeOnClickOutside(e) {
 
 editProfileButton.addEventListener("click", () => openProfileForm()); // edit profile open popup
 profilePopupCloseButton.addEventListener("click", () => closePopup(profilePopup)); // closes the poup when click on X.
-addForm.addEventListener("click", () => openPopup(placeAdd)); //open the add photo form.
+addCardPopup.addEventListener("click", () => openPopup(placeAdd)); //open the add photo form.
 placeClose.addEventListener("click", () => closePopup(placeAdd)); // close add form
 imgPreview.addEventListener("click", () => closePopup(imgPreview)); // closes the image preview
 profileEdit.addEventListener("submit", () => handleProfileFormSubmit(event)); // saves the profile info + prevents the site submit .
-placeForm.addEventListener("submit", () => addCard(event)) //this listining to event submit (save)
+placePopupForm.addEventListener("submit", () => addCard(event)) //this listining to event submit (save)
 
 
 

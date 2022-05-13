@@ -1,24 +1,19 @@
 // enabling validation by calling enableValidation()
 // pass all the settings on call
-const hideInputError = (input, formEl, {
-    errorClass
-}) => {
-    const errorSpan = formEl.querySelector(`#${input.id}-error`);
-    console.log(errorSpan);
+const hideInputError = (input, formEl, settings) => {
+    const errorElement = formEl.querySelector(`#${input.id}-error`);
     // add error msg/class
-    errorSpan.textContent = "";
+    errorElement.textContent = "";
     // input.classList.remove(errorClass);
-    input.classList.remove("form__input-errorline");
+    input.classList.remove(settings.errorClass);
 
 }
 const showInputError = (input, formEl, {
     errorClass
 }) => {
-    const errorSpan = formEl.querySelector(`#${input.id}-error`);
-    console.log(errorSpan);
+    const errorElement = formEl.querySelector(`#${input.id}-error`);
     // add error msg/class
-    console.log(input.validationMessage);
-    errorSpan.textContent = input.validationMessage;
+    errorElement.textContent = input.validationMessage;
     // input.classList.add(errorClass);
     input.classList.add("form__input-errorline");
 
@@ -52,10 +47,10 @@ const toggleButton = (inputList, button, settings) => {
 const setEvenetListeners = (formEl, settings) => {
     const inputList = Array.from(formEl.querySelectorAll(settings.inputSelector));
     const submitButton = formEl.querySelector(settings.submitButtonSelector);
+    toggleButton(inputList, submitButton, settings);
 
     inputList.forEach((input) => {
         input.addEventListener('input', (e) => {
-            console.log(e)
             // check validity
             checkInputValidity(formEl, input, settings);
 
@@ -70,18 +65,20 @@ const enableValidation = (settings) => {
     const formEl = Array.from(document.querySelectorAll(settings.formSelector));
     formEl.forEach((formEl) => {
         formEl.addEventListener("submit", (e) => {
-            e.preventdeafult();
+            e.preventDefault();
         })
         //selecting the inputs
         setEvenetListeners(formEl, settings);
     });
 };
+const settings = {
 
-enableValidation({
     formSelector: ".popup__form",
     inputSelector: ".form__input",
     submitButtonSelector: ".form__button",
     inactiveButtonClass: "form__button_disabled",
     inputErrorClass: "form__input-error",
-    errorClass: "form__input-error"
-});
+    errorClass: "form__input-errorline"
+
+};
+enableValidation(settings);
