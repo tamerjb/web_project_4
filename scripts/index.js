@@ -1,131 +1,32 @@
-///////////////////////////////////////////
-//////// Selectors ///////////
-///////////////////////////////////////////
-const profileForm = document.querySelector(".form");
-const profile = document.querySelector(".profile");
-const profileName = profile.querySelector(".profile__name");
-const editProfileButton = profile.querySelector(".profile__edit-button");
-const profilePopup = document.querySelector(".popup");
+import {
+  profileForm,
+  profile,
+  cardList,
+  profileEdit,
+  placePopupForm,
+  imgPreview,
+  placeForm,
+  fillProfileForm,
+  openPopup,
+  closePopup,
+  handleProfileFormSubmit,
+  addCard,
+  renderCard,
+  previewImage,
+  profilePopup,
+  openProfileForm
+} from "./utils.js";
+
+
 const profilePopupCloseButton = profilePopup.querySelector(".popup__button-close");
-const profileTitle = profile.querySelector(".profile__title");
-const inputName = form.querySelector(".form__input[name='name']");
-const inputTitle = form.querySelector(".form__input[name='title']");
-const cards = document.querySelector(".cards");
-
-const cardTemplate = document.querySelector("#card-template");
-const cardList = cards.querySelector(".cards__list");
-const addCardPopup = profile.querySelector(".profile__add-button");
-const profileEdit = document.querySelector(".popup-edit-profile");
-const placePopupForm = document.querySelector(".popup__form-type-add-place");
-const placeName = placePopupForm.querySelector(".form__input-type-place-name");
-const placeURL = placePopupForm.querySelector(".form__input-type-place-url");
-
-const imgPreview = document.querySelector(".popup-prev");
 const imgPreviewCloseButton = imgPreview.querySelector(
   ".popup__close-button"
 );
-
-const placeForm = document.querySelector(".popup-place");
 const placeClose = placeForm.querySelector(".popup__button-close-type-place");
 
+const editProfileButton = profile.querySelector(".profile__edit-button");
+const addCardPopup = profile.querySelector(".profile__add-button");
 
-
-///////////////////////////////////////////
-//////// Functions ///////////
-///////////////////////////////////////////
-function fillProfileForm() { //this function set the input fields value.
-  inputName.value = profileName.textContent;
-  inputTitle.value = profileTitle.textContent;
-}
-
-function saveProfileForm() {
-  profileName.textContent = inputName.value;
-  profileTitle.textContent = inputTitle.value;
-  closePopup(profilePopup);
-
-}
-
-function openPopup(popup) {
-  popup.classList.add("popup_opened");
-  document.addEventListener("keydown", closeOnEscape);
-  popup.addEventListener("mousedown", closeOnClickOutside);
-
-}
-
-function closePopup(popup) {
-  popup.classList.remove("popup_opened");
-  document.removeEventListener("keydown", closeOnEscape);
-  popup.removeEventListener("mousedown", closeOnClickOutside);
-
-}
-
-function togglePopupSubmitButton(popup) {
-  const inputList = Array.from(popup.querySelectorAll(settings.inputSelector));
-  const submitButton = popup.querySelector(settings.submitButtonSelector);
-  toggleButton(inputList, submitButton, settings);
-}
-
-function openProfileForm() { //opens the edit name form
-  fillProfileForm();
-  openPopup(profilePopup);
-
-}
-
-
-function toggleClass(item, className) { //function toggles(add/remove) a specifc class, *item* is selcetor name / x is the class that want to add/remove .
-  item.classList.toggle(className);
-}
-
-function handleProfileFormSubmit(event) { //saves the name after editing
-  event.preventDefault();
-  saveProfileForm();
-}
-
-function addCard(event) { //this function to add the card manullay
-  event.preventDefault();
-  renderCard({
-    name: placeName.value,
-    link: placeURL.value
-  }, cardList);
-
-  // toggleClass(placeForm, "popup_opened");
-  closePopup(placeForm);
-  placePopupForm.reset();
-  togglePopupSubmitButton(placeForm);
-}
-
-function renderCard(card, list) { // adds the card to the first place
-  list.prepend(createCard(card));
-}
-
-function previewImage(card) {
-  const popupImage = imgPreview.querySelector(".popup__image");
-  const popupCaption = imgPreview.querySelector(".popup__caption");
-  popupImage.src = card.link;
-  popupImage.alt = `A beautiful place in ${card.name}`;
-  popupCaption.textContent = card.name;
-  openPopup(imgPreview);
-}
-
-function closeOnEscape(evt) {
-  const popupOpened = document.querySelector(".popup_opened");
-
-  if (evt.key === "Escape") {
-    closePopup(popupOpened);
-  }
-}
-
-// function closeOnClickOutside(e) {
-//   const popupOpened = document.querySelector(".popup_opened");
-//   if (e.target.classList.contains("popup")) {
-//     closePopup(popupOpened);
-//   }
-// }
-function closeOnClickOutside(evt) {
-  if (evt.target === evt.currentTarget) {
-    closePopup(evt.target)
-  }
-}
 
 ///////////////////////////////////////////
 //////// EventListeners ///////////
@@ -173,25 +74,25 @@ const initialCards = [{
 
 initialCards.forEach((card) => renderCard(card, cardList));
 
-//create card
-function createCard(card) {
-  const cardTemplateContent = cardTemplate.content;
-  const cardElement = cardTemplateContent.querySelector(".card").cloneNode(true);
-  const cardTitle = cardElement.querySelector(".card__info-title");
-  const likeButton = cardElement.querySelector(".card__like-button");
-  const cardImage = cardElement.querySelector(".card__image");
-  const deleteButton = cardElement.querySelector(".card__image-trash");
+// //create card
+// function createCard(card) {
+//   const cardTemplateContent = cardTemplate.content;
+//   // const cardElement = cardTemplateContent.querySelector(".card").cloneNode(true);
+//   const cardTitle = cardElement.querySelector(".card__info-title");
+//   const likeButton = cardElement.querySelector(".card__like-button");
+//   const cardImage = cardElement.querySelector(".card__image");
+//   const deleteButton = cardElement.querySelector(".card__image-trash");
 
-  cardTitle.textContent = card.name;
-  cardImage.src = card.link;
-  cardImage.alt = `place in ${card.name}`;
+//   cardTitle.textContent = card.name;
+//   cardImage.src = card.link;
+//   cardImage.alt = `place in ${card.name}`;
 
-  cardImage.addEventListener("click", () => previewImage(card));
-  deleteButton.addEventListener("click", () => cardElement.remove());
-  likeButton.addEventListener("click", () =>
-    toggleClass(likeButton, "card__like-button_active"));
-  return cardElement;
-}
+//   cardImage.addEventListener("click", () => previewImage(card));
+//   deleteButton.addEventListener("click", () => cardElement.remove());
+//   likeButton.addEventListener("click", () =>
+//     toggleClass(likeButton, "card__like-button_active"));
+//   return cardElement;
+// }
 
 
 /////////////////////////////////////////////
