@@ -52,7 +52,7 @@ const validateConfigs = {
   submitButtonSelector: ".form__button",
   inactiveButtonClass: "form__button_disabled",
   inputErrorClass: "form__input-error",
-  errorClass: "form__input-errorline",
+  errorClass: "form__input-error",
 };
 
 const profileFormValidator = new FormValidator(
@@ -61,7 +61,7 @@ const profileFormValidator = new FormValidator(
 );
 const addFormValidator = new FormValidator(validateConfigs, placeForm);
 
-// profileFormValidator.enableValidation();
+profileFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
 
