@@ -17,6 +17,10 @@ import {
   openProfileForm
 } from "./utils.js";
 
+import {
+  FormValidator
+} from "./validate.js";
+
 
 const profilePopupCloseButton = profilePopup.querySelector(".popup__button-close");
 const imgPreviewCloseButton = imgPreview.querySelector(
@@ -29,7 +33,7 @@ const addCardPopup = profile.querySelector(".profile__add-button");
 
 
 ///////////////////////////////////////////
-//////// EventListeners ///////////
+//////// EventListeners ///////////////////
 ///////////////////////////////////////////
 
 editProfileButton.addEventListener("click", () => openProfileForm()); // edit profile open popup
@@ -40,6 +44,25 @@ imgPreview.addEventListener("click", () => closePopup(imgPreview)); // closes th
 profileEdit.addEventListener("submit", () => handleProfileFormSubmit(event)); // saves the profile info + prevents the site submit .
 placePopupForm.addEventListener("submit", () => addCard(event)) //this listining to event submit (save)
 
+///////////////////////////////////////////
+//////// Form Validtation ////////////////
+/////////////////////////////////////////
+const validateConfigs = {
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__button",
+  inactiveButtonClass: "form__button_disabled",
+  inputErrorClass: "form__input-error",
+  errorClass: "form__input-errorline",
+};
+
+const profileFormValidator = new FormValidator(
+  validateConfigs,
+  profileForm
+);
+const addFormValidator = new FormValidator(validateConfigs, placeForm);
+
+// profileFormValidator.enableValidation();
+addFormValidator.enableValidation();
 
 
 
