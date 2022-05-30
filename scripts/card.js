@@ -27,7 +27,7 @@ export class Card {
             previewImage(this._link, this._text);
         });
         this._deleteButton.addEventListener("click", (evt) => {
-            evt.target.remove();
+            this._element.remove();
 
         })
     }
