@@ -1,6 +1,6 @@
 import {
     previewImage
-} from "./utils.js";
+} from "./index.js";
 
 export class Card {
     constructor(data, selector) {
@@ -19,18 +19,17 @@ export class Card {
         evt.target.classList.toggle("card__like-button_active");
     }
     _setEventListeners() {
-        this._element.addEventListener("click", (evt) => {
-            if (evt.target === this._image) {
-                previewImage(this._link, this._text);
-            }
-            if (evt.target === this._likeButton) {
-                this._handleLikeButton(evt);
-            }
-            if (evt.target === this._deleteButton) {
-                evt.currentTarget.remove();
-            }
 
+        this._likeButton.addEventListener("click", (evt) => {
+            this._handleLikeButton(evt);
         });
+        this._image.addEventListener("click", (evt) => {
+            previewImage(this._link, this._text);
+        });
+        this._deleteButton.addEventListener("click", (evt) => {
+            evt.target.remove();
+
+        })
     }
     generateCard() {
         this._element = this._getCloneFromTemplate();

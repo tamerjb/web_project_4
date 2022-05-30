@@ -1,26 +1,40 @@
 import {
-  profileForm,
-  profile,
-  cardList,
-  profileEdit,
-  placePopupForm,
-  imgPreview,
-  placeForm,
-  fillProfileForm,
+
   openPopup,
   closePopup,
-  handleProfileFormSubmit,
-  addCard,
-  renderCard,
-  previewImage,
-  profilePopup,
-  openProfileForm
+
 } from "./utils.js";
 
 import {
   FormValidator
-} from "./validate.js";
+} from "./FormValidator.js";
+import {
+  Card
+} from "./Card.js";
+///////////////////////////////////////////
+//////// Selectors ///////////
+///////////////////////////////////////////
+const profileForm = document.querySelector(".form");
+const profile = document.querySelector(".profile");
+const profileName = profile.querySelector(".profile__name");
+const profilePopup = document.querySelector(".popup");
+const profileTitle = profile.querySelector(".profile__title");
+const inputName = form.querySelector(".form__input[name='name']");
+const inputTitle = form.querySelector(".form__input[name='title']");
+const cards = document.querySelector(".cards");
+const cardTemplate = document.querySelector("#card-template");
+const cardList = cards.querySelector(".cards__list");
+const profileEdit = document.querySelector(".popup-edit-profile");
+const placePopupForm = document.querySelector(".popup__form-type-add-place");
+const placeName = placePopupForm.querySelector(".form__input-type-place-name");
+const placeURL = placePopupForm.querySelector(".form__input-type-place-url");
+const imgPreview = document.querySelector(".popup-prev");
+const popupPreviewImg = imgPreview.querySelector(".popup__image");
+const popupPreviewCaption = imgPreview.querySelector(".popup__caption");
 
+
+const placeForm = document.querySelector(".popup-place");
+const cardTemplateSelector = "#card-template";
 
 const profilePopupCloseButton = profilePopup.querySelector(".popup__button-close");
 const imgPreviewCloseButton = imgPreview.querySelector(
@@ -97,25 +111,66 @@ const initialCards = [{
 
 initialCards.forEach((card) => renderCard(card, cardList));
 
-// //create card
-// function createCard(card) {
-//   const cardTemplateContent = cardTemplate.content;
-//   // const cardElement = cardTemplateContent.querySelector(".card").cloneNode(true);
-//   const cardTitle = cardElement.querySelector(".card__info-title");
-//   const likeButton = cardElement.querySelector(".card__like-button");
-//   const cardImage = cardElement.querySelector(".card__image");
-//   const deleteButton = cardElement.querySelector(".card__image-trash");
+function openProfileForm() { //opens the edit name form
+  fillProfileForm();
+  openPopup(profilePopup);
+  this._toggleButton();
 
-//   cardTitle.textContent = card.name;
-//   cardImage.src = card.link;
-//   cardImage.alt = `place in ${card.name}`;
+}
 
-//   cardImage.addEventListener("click", () => previewImage(card));
-//   deleteButton.addEventListener("click", () => cardElement.remove());
-//   likeButton.addEventListener("click", () =>
-//     toggleClass(likeButton, "card__like-button_active"));
-//   return cardElement;
+function fillProfileForm() { //this function set the input fields value.
+  inputName.value = profileName.textContent;
+  inputTitle.value = profileTitle.textContent;
+}
+
+function saveProfileForm() {
+  profileName.textContent = inputName.value;
+  profileTitle.textContent = inputTitle.value;
+  closePopup(profilePopup);
+
+}
+// function togglePopupSubmitButton(popup) {
+
+//   const inputList = Array.from(popup.querySelectorAll(settings.inputSelector));
+
+//   const submitButton = popup.querySelector(settings.submitButtonSelector);
+
+//   toggleButton(inputList, submitButton, settings);
+
 // }
 
 
-/////////////////////////////////////////////
+function toggleClass(item, className) { //function toggles(add/remove) a specifc class, *item* is selcetor name / x is the class that want to add/remove .
+  item.classList.toggle(className);
+}
+
+function handleProfileFormSubmit(event) { //saves the name after editing
+  event.preventDefault();
+  saveProfileForm();
+}
+
+function addCard(event) { //this function to add the card manullay
+  event.preventDefault();
+  renderCard({
+    name: placeName.value,
+    link: placeURL.value
+  }, cardList);
+
+  // toggleClass(placeForm, "popup_opened");
+  closePopup(placeForm);
+  placePopupForm.reset();
+  this._toggleButton();
+}
+
+function renderCard(card, list) { // adds the card to the first place
+  const cardToRender = new Card(card, cardTemplateSelector).generateCard();
+  list.prepend(cardToRender);
+}
+
+export function previewImage(thisLink, thisName) {
+
+  popupPreviewImg.src = thisLink;
+  popupPreviewImg.alt = `A beautiful place in ${thisName}`;
+  popupPreviewCaption.textContent = thisName;
+  openPopup(imgPreview);
+}
