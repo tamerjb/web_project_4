@@ -22,7 +22,7 @@ export function closePopup(popup) {
 
 }
 
-function closeOnEscape(evt) {
+export function closeOnEscape(evt) {
 
 
     if (evt.key === "Escape") {
@@ -31,7 +31,7 @@ function closeOnEscape(evt) {
     }
 }
 
-function closeOnClickOutside(evt) {
+export function closeOnClickOutside(evt) {
     if (evt.target === evt.currentTarget) {
         closePopup(evt.target)
     }

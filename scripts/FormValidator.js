@@ -26,15 +26,16 @@ export class FormValidator {
 
     }
     _checkInputValidity(input) {
-        if (input.validity.valid) {
-            this._hideInputError(input);
-        } else {
+        if (!input.validity.valid) {
             this._showInputError(input);
+        } else {
+            this._hideInputError(input);
+
         }
 
     }
     _hasValidInputs() {
-        return !this._inputList.some((input) => {
+        return this._inputList.every((input) => {
             return input.validity.valid;
         })
 
@@ -48,16 +49,17 @@ export class FormValidator {
                 this._checkInputValidity(input);
                 this._toggleButton();
             });
+            this.resetValidation();
 
         });
     }
     _toggleButton() {
         if (this._hasValidInputs()) {
-            this._button.disabled = true;
-            this._button.classList.add(this._inactiveButtonClass);
-        } else {
             this._button.disabled = false;
             this._button.classList.remove(this._inactiveButtonClass);
+        } else {
+            this._button.disabled = true;
+            this._button.classList.add(this._inactiveButtonClass);
         }
 
 

@@ -2,6 +2,8 @@ import {
 
   openPopup,
   closePopup,
+  closeOnEscape,
+  closeOnClickOutside,
 
 } from "./utils.js";
 
@@ -37,27 +39,33 @@ const popupPreviewCaption = imgPreview.querySelector(".popup__caption");
 const placeForm = document.querySelector(".popup-place");
 const cardTemplateSelector = "#card-template";
 
-const profilePopupCloseButton = profilePopup.querySelector(".popup__button-close");
-const imgPreviewCloseButton = imgPreview.querySelector(
-  ".popup__close-button"
-);
+
 const placeClose = placeForm.querySelector(".popup__button-close-type-place");
 
 const editProfileButton = profile.querySelector(".profile__edit-button");
 const addCardPopup = profile.querySelector(".profile__add-button");
+const closeButtons = document.querySelectorAll('.popup__close-button');
+
+
 
 
 ///////////////////////////////////////////
 //////// EventListeners ///////////////////
 ///////////////////////////////////////////
+closeButtons.forEach((button) => { //close popups by pressing on X
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
+});
 
 editProfileButton.addEventListener("click", () => openProfileForm()); // edit profile open popup
-profilePopupCloseButton.addEventListener("click", () => closePopup(profilePopup)); // closes the poup when click on X.
+// profilePopupCloseButton.addEventListener("click", () => closePopup(profilePopup)); // closes the poup when click on X.
 addCardPopup.addEventListener("click", () => openPopup(placeForm)); //open the add photo form.
 placeClose.addEventListener("click", () => closePopup(placeForm)); // close add form
 imgPreview.addEventListener("click", () => closePopup(imgPreview)); // closes the image preview
-profileEdit.addEventListener("submit", () => handleProfileFormSubmit(event)); // saves the profile info + prevents the site submit .
-placePopupForm.addEventListener("submit", () => addCard(event)) //this listining to event submit (save)
+profileEdit.addEventListener("submit", handleProfileFormSubmit);
+// saves the profile info + prevents the site submit .
+placePopupForm.addEventListener("submit", addCard);
+//this listining to event submit (save)
 
 ///////////////////////////////////////////
 //////// Form Validtation ////////////////
@@ -115,7 +123,6 @@ initialCards.forEach((card) => renderCard(card, cardList));
 function openProfileForm() { //opens the edit name form
   fillProfileForm();
   openPopup(profilePopup);
-  this._toggleButton();
 
 }
 
@@ -130,15 +137,6 @@ function saveProfileForm() {
   closePopup(profilePopup);
 
 }
-// function togglePopupSubmitButton(popup) {
-
-//   const inputList = Array.from(popup.querySelectorAll(settings.inputSelector));
-
-//   const submitButton = popup.querySelector(settings.submitButtonSelector);
-
-//   toggleButton(inputList, submitButton, settings);
-
-// }
 
 
 function toggleClass(item, className) { //function toggles(add/remove) a specifc class, *item* is selcetor name / x is the class that want to add/remove .
@@ -162,6 +160,9 @@ function addCard(event) { //this function to add the card manullay
   placePopupForm.reset();
   this._toggleButton();
 }
+
+
+
 
 function renderCard(card, list) { // adds the card to the first place
   const cardToRender = new Card(card, cardTemplateSelector).generateCard();
