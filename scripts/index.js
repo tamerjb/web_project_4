@@ -13,7 +13,7 @@ import {
 
 import {
   Card
-} from "./card.js";
+} from "./Card.js";
 ///////////////////////////////////////////
 //////// Selectors ///////////
 ///////////////////////////////////////////
@@ -120,7 +120,6 @@ initialCards.forEach((card) => renderCard(card, cardList));
 function openProfileForm() { //opens the edit name form
   fillProfileForm();
   openPopup(profilePopup);
-  addFormValidator.resetValidation();
 
 }
 
@@ -156,6 +155,8 @@ function addCard(event) { //this function to add the card manullay
   // toggleClass(placeForm, "popup_opened");
   closePopup(placeForm);
   placePopupForm.reset();
+  addFormValidator.resetValidation();
+
 
 }
 
