@@ -16,7 +16,7 @@ from "../../scripts/FormValidator.js";
 import {
   Card
 } from "../../scripts/Card.js";
-
+import "./styles/index.css";
 // checks
 
 let someStr = "I coded. I saved. I bundled.";
