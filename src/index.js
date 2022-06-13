@@ -6,16 +6,16 @@ import {
   closeOnClickOutside,
 
 }
-from "../scripts/utils.js";
+from "./scripts/utils.js";
 
 import {
   FormValidator
 }
-from "../scripts/FormValidator.js";
+from "./scripts/FormValidator.js";
 
 import {
   Card
-} from "../scripts/Card.js";
+} from "./scripts/Card.js";
 import "./styles/index.css";
 
 ///////////////////////////////////////////

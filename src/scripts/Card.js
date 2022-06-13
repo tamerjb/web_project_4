@@ -1,6 +1,6 @@
 import {
     previewImage
-} from "../src/index.js";
+} from "../index.js";
 
 export class Card {
     constructor(data, selector) {
