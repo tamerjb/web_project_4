@@ -1,6 +1,6 @@
 import {
     previewImage
-} from "../practicum/src/index.js";
+} from "../src/index.js";
 
 export class Card {
     constructor(data, selector) {
