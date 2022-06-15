@@ -1,12 +1,9 @@
-import {
-    previewImage
-} from "../index.js";
-
 export class Card {
-    constructor(data, selector) {
+    constructor(data, selector, handleCardClick) {
         this._text = data.name;
         this._link = data.link;
         this._selector = selector;
+        this._handleCardClick = handleCardClick;
     }
     _getCloneFromTemplate() {
         const cardElement = document
@@ -24,7 +21,7 @@ export class Card {
             this._handleLikeButton(evt);
         });
         this._image.addEventListener("click", (evt) => {
-            previewImage(this._link, this._text);
+            this._handleCardClick(evt);
         });
         this._deleteButton.addEventListener("click", (evt) => {
             this._element.remove();
