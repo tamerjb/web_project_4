@@ -31,11 +31,12 @@ export class Card {
     generateCard() {
         this._element = this._getCloneFromTemplate();
         this._image = this._element.querySelector(".card__image");
+        this._image.src = this._link;
+        this._image.alt = `Place in ${this._text}`;
         this._likeButton = this._element.querySelector(".card__like-button");
         this._deleteButton = this._element.querySelector(".card__image-trash");
         this._element.querySelector(".card__info-title").textContent = this._text;
-        this._image.src = this._link;
-        this._image.alt = `Place in ${this._text}`;
+
 
         this._setEventListeners();
 

@@ -30,7 +30,7 @@ import {
 
 import {
   UserInfo
-} from "../scripts/UserInfo";
+} from "../scripts/UserInfo.js";
 
 
 import "../styles/index.css";
@@ -88,16 +88,16 @@ const closeButtons = document.querySelectorAll('.popup__close-button');
 // placePopupForm.addEventListener("submit", addCard);
 // //this listining to event submit (save)
 editProfileButton.addEventListener("click", () => {
-  const info = UserInfo.getUserInfo();
+  const info = userInfo.getUserInfo();
   inputName.value = info.name;
   inputTitle.value = info.job;
   profileFormValidator.hideErrors();
-  profileFormValidator.enableButton();
+  profileFormValidator._toggleButton();
   editPopup.open();
 });
 
 addCardPopup.addEventListener("click", () => {
-  addCardPopup.open();
+  addPopup.open();
   addFormValidator.hideErrors();
 });
 
@@ -120,6 +120,11 @@ const addFormValidator = new FormValidator(validateConfigs, placeForm);
 
 profileFormValidator.enableValidation();
 addFormValidator.enableValidation();
+
+const userInfo = new UserInfo({
+  nameSelector: ".profile__name",
+  jobSelector: ".profile__title",
+});
 
 
 
@@ -198,17 +203,17 @@ const initialCards = [{
 // }
 
 
-const imagePopup = new PopupWithImage(".popup__image");
+const imagePopup = new PopupWithImage(".popup-prev");
 imagePopup.setEventListeners();
 
-const editPopup = new PopupWithForm(".popup-edit-profile", (data) => {
-  UserInfo.setUserInfo(data.name, data.title);
+const editPopup = new PopupWithForm(".popup", (data) => {
+  userInfo.setUserInfo(data.name, data.job);
 });
 editPopup.setEventListeners();
 
-const addPopup = new PopupWithForm(".popup__form-type-add-place", (data) => {
+const addPopup = new PopupWithForm(".popup-place", (data) => {
   renderCard(data);
-  addFormValidator.resetFormButton();
+  addFormValidator.resetValidation();
 });
 addPopup.setEventListeners();
 
@@ -224,3 +229,24 @@ addPopup.setEventListeners();
 //   popupPreviewCaption.textContent = thisName;
 //   openPopup(imgPreview);
 // }
+const placesSection = new Section({
+    items: initialCards,
+    renderer: (data) => renderCard(data),
+  },
+  ".cards__list"
+);
+
+placesSection.render();
+
+function generateCard(data) {
+  const card = new Card(data, cardTemplateSelector, () => {
+    imagePopup.open(data.link, data.name);
+  });
+  const cardElement = card.generateCard();
+  return cardElement;
+}
+
+function renderCard(data) {
+  const element = generateCard(data);
+  placesSection.addItem(element);
+}

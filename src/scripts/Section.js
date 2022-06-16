@@ -13,7 +13,7 @@ export class Section {
             this._renderer(item);
         });
     }
-    addItem() {
+    addItem(item) {
         this._container.prepend(item);
     }
 }

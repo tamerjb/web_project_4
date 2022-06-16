@@ -4,8 +4,8 @@ import {
 export class PopupWithForm extends Popup {
     constructor(PopupSelector, submitHandler) {
         super(PopupSelector);
-        this.submitHandler = submitHandler;
-        this._formElement = this._popupElement.qureySelector('.popup__form');
+        this._submitHandler = submitHandler;
+        this._formElement = this._popupElement.querySelector('.popup__form');
     }
     _getInputValues() {
         const inputs = [...this._formElement.querySelectorAll(".form__input")];
@@ -25,15 +25,14 @@ export class PopupWithForm extends Popup {
         });
         super.setEventListeners();
     }
-    close() {
+    close = () => {
         super.close()
-        this._form.reset()
 
     }
 }
-const profileName = '';
-const profileJob = '';
-const editModal = new PopupWithForm(".popup-edit-profile", (data) => {
-    profileName.textContent = data.name;
-    profileJob.textContent = data.title;
-})
+// const profileName = '';
+// const profileJob = '';
+// const editModal = new PopupWithForm(".popup-edit-profile", (data) => {
+//     profileName.textContent = data.name;
+//     profileJob.textContent = data.job;
+// })

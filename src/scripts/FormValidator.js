@@ -77,7 +77,11 @@ export class FormValidator {
         });
 
     }
+    hideErrors() {
+        this._inputList.forEach((input) => {
+            this._hideInputError(input);
+        });
 
-
+    }
 
 }
