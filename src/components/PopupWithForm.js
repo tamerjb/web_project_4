@@ -34,5 +34,5 @@ export class PopupWithForm extends Popup {
 // const profileJob = '';
 // const editModal = new PopupWithForm(".popup-edit-profile", (data) => {
 //     profileName.textContent = data.name;
-//     profileJob.textContent = data.job;
+//     profile.textContent = data.job;
 // })

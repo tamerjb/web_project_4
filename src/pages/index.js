@@ -11,63 +11,59 @@
 import {
   FormValidator
 }
-from "../scripts/FormValidator.js";
+from "../components/FormValidator.js";
 
 import {
   Card
-} from "../scripts/Card.js";
+} from "../components/Card.js";
 import {
   Popup
 }
-from "../scripts/Popup.js";
+from "../components/Popup.js";
 import {
   PopupWithForm
 }
-from "../scripts/PopupWithForm.js";
+from "../components/PopupWithForm.js";
 import {
   Section
-} from "../scripts/Section.js";
+} from "../components/Section.js";
 
 import {
   UserInfo
-} from "../scripts/UserInfo.js";
+} from "../components/UserInfo.js";
 
 
 import "../styles/index.css";
 import {
   PopupWithImage
-} from "../scripts/PopupWithImage.js";
+} from "../components/PopupWithImage.js";
 
-///////////////////////////////////////////
-//////// Selectors ///////////
-///////////////////////////////////////////
-const profileForm = document.querySelector(".form");
-const profile = document.querySelector(".profile");
-const profileName = profile.querySelector(".profile__name");
-const profilePopup = document.querySelector(".popup");
-const profileTitle = profile.querySelector(".profile__title");
-const inputName = form.querySelector(".form__input[name='name']");
-const inputTitle = form.querySelector(".form__input[name='title']");
-const cards = document.querySelector(".cards");
-const cardTemplate = document.querySelector("#card-template");
-const cardList = cards.querySelector(".cards__list");
-const profileEdit = document.querySelector(".popup-edit-profile");
-const placePopupForm = document.querySelector(".popup__form-type-add-place");
-const placeName = placePopupForm.querySelector(".form__input-type-place-name");
-const placeURL = placePopupForm.querySelector(".form__input-type-place-url");
-const imgPreview = document.querySelector(".popup-prev");
-const popupPreviewImg = imgPreview.querySelector(".popup__image");
-const popupPreviewCaption = imgPreview.querySelector(".popup__caption");
+import {
+  profileForm,
+  profile,
+  profileName,
+  profilePopup,
+  profileTitle,
+  inputName,
+  inputTitle,
+  cards,
+  cardTemplate,
+  cardList,
+  profileEdit,
+  placePopupForm,
+  placeName,
+  placeURL,
+  imgPreview,
+  popupPreviewImg,
+  popupPreviewCaption,
+  placeForm,
+  cardTemplateSelector,
+  editProfileButton,
+  addCardPopup,
+  closeButtons,
+  initialCards
 
-
-const placeForm = document.querySelector(".popup-place");
-const cardTemplateSelector = "#card-template";
-
-
-const editProfileButton = profile.querySelector(".profile__edit-button");
-const addCardPopup = profile.querySelector(".profile__add-button");
-const closeButtons = document.querySelectorAll('.popup__close-button');
-
+} from "../utils/constants"
 
 
 
@@ -130,31 +126,7 @@ const userInfo = new UserInfo({
 
 
 
-const initialCards = [{
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg",
-  },
-];
+
 /** This line adds the array to the page */
 
 // initialCards.forEach((card) => renderCard(card, cardList));
@@ -240,7 +212,7 @@ placesSection.render();
 
 function generateCard(data) {
   const card = new Card(data, cardTemplateSelector, () => {
-    imagePopup.open(data.link, data.name);
+    imagePopup.open(data.link, data.placename);
   });
   const cardElement = card.generateCard();
   return cardElement;
