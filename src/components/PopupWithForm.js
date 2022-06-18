@@ -20,7 +20,7 @@ export class PopupWithForm extends Popup {
         this._formElement.addEventListener("submit", (e) => {
             e.preventDefault();
             this._submitHandler(this._getInputValues());
-            this._formElement.reset();
+            this._formElement.reset(); //reset the form when openning again
             this.close();
         });
         super.setEventListeners();
@@ -28,11 +28,6 @@ export class PopupWithForm extends Popup {
     close = () => {
         super.close()
 
+
     }
 }
-// const profileName = '';
-// const profileJob = '';
-// const editModal = new PopupWithForm(".popup-edit-profile", (data) => {
-//     profileName.textContent = data.name;
-//     profile.textContent = data.job;
-// })

@@ -65,14 +65,15 @@ editProfileButton.addEventListener("click", () => {
   const info = userInfo.getUserInfo();
   inputName.value = info.name;
   inputTitle.value = info.job;
-  profileFormValidator.hideErrors();
-  profileFormValidator._toggleButton();
-  editPopup.open();
+  profileFormValidator.enableValidation();
+  profileFormValidator.toggleButton();
+  popupEditProfile.open();
 });
 
 addCardPopup.addEventListener("click", () => {
-  addPopup.open();
-  addFormValidator.hideErrors();
+  popupAddCard.open();
+  addFormValidator.resetValidation();
+
 });
 
 ///////////////////////////////////////////
@@ -88,7 +89,7 @@ const validateConfigs = {
 
 const profileFormValidator = new FormValidator(
   validateConfigs,
-  profileForm
+  profilePopup
 );
 const addFormValidator = new FormValidator(validateConfigs, placeForm);
 
@@ -106,19 +107,19 @@ const userInfo = new UserInfo({
 
 
 
-const imagePopup = new PopupWithImage(".popup-prev");
-imagePopup.setEventListeners();
+const PopupImage = new PopupWithImage(".popup-prev");
+PopupImage.setEventListeners();
 
-const editPopup = new PopupWithForm(".popup", (data) => {
-  userInfo.setUserInfo(data.name, data.job);
+const popupEditProfile = new PopupWithForm(".popup", (data) => {
+  userInfo.setUserInfo(data.name, data.title);
 });
-editPopup.setEventListeners();
+popupEditProfile.setEventListeners();
 
-const addPopup = new PopupWithForm(".popup-place", (data) => {
+const popupAddCard = new PopupWithForm(".popup-place", (data) => {
   renderCard(data);
   addFormValidator.resetValidation();
 });
-addPopup.setEventListeners();
+popupAddCard.setEventListeners();
 
 ///////////////////////////////////////////
 //////// card creation ////////////////
@@ -130,11 +131,11 @@ const placesSection = new Section({
   ".cards__list"
 );
 
-placesSection.render();
+placesSection.renderItems();
 
 function generateCard(data) {
   const card = new Card(data, cardTemplateSelector, () => {
-    imagePopup.open(data.link, data.placename);
+    PopupImage.open(data.link, data.placename);
   });
   const cardElement = card.generateCard();
   return cardElement;

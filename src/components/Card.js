@@ -37,11 +37,7 @@ export class Card {
         this._likeButton = this._element.querySelector(".card__like-button");
         this._deleteButton = this._element.querySelector(".card__image-trash");
         this._element.querySelector(".card__info-title").textContent = this._placename;
-        // console.log(this);
-
-
         this._setEventListeners();
-
         return this._element;
     }
 }
