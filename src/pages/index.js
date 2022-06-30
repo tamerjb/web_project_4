@@ -107,8 +107,8 @@ const userInfo = new UserInfo({
 
 
 
-const PopupImage = new PopupWithImage(".popup-prev");
-PopupImage.setEventListeners();
+const popupImage = new PopupWithImage(".popup-prev");
+popupImage.setEventListeners();
 
 const popupEditProfile = new PopupWithForm(".popup", (data) => {
   userInfo.setUserInfo(data.name, data.title);
@@ -135,7 +135,7 @@ placesSection.renderItems();
 
 function generateCard(data) {
   const card = new Card(data, cardTemplateSelector, () => {
-    PopupImage.open(data.link, data.placename);
+    popupImage.open(data.link, data.placename);
   });
   const cardElement = card.generateCard();
   return cardElement;
