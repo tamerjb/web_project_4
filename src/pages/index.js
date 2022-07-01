@@ -57,6 +57,26 @@ import {
   initialCards
 
 } from "../utils/constants"
+import {
+  api
+} from "../components/Api"
+
+///////////////////////////////////////////
+//////// API //////////////////////////////
+///////////////////////////////////////////
+console.log(api)
+api.getInitialCards()
+  .then(res => {
+    cardList.renderItems(res);
+    console.log('res', res)
+  });
+api.getUserInfo().then(res => {
+  userInfo.setUserInfo({
+    name: res.name,
+    job: res.about
+  })
+
+});
 
 
 
