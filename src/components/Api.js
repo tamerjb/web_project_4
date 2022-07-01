@@ -1,10 +1,13 @@
 const customFetch = (url, headers) => {
-    fetch(url, headers)
+    return fetch(url, headers)
         .then(res => res.ok ? res.json() : Promise.reject(res.statusText)).catch(err => console.log())
 
 }
 class Api {
-    constructor(baseUrl, headers) {
+    constructor({
+        baseUrl,
+        headers
+    }) {
         this._baseUrl = baseUrl;
         this._headers = headers;
     }

@@ -1,6 +1,9 @@
 export class Card {
-    constructor(data, selector, handleCardClick) {
-        this._placename = data.placename;
+    constructor({
+        data,
+        handleCardClick
+    }, selector) {
+        this._txt = data.name;
         this._link = data.link;
         this._selector = selector;
         this._handleCardClick = handleCardClick;
@@ -33,10 +36,10 @@ export class Card {
         this._element = this._getCloneFromTemplate();
         this._image = this._element.querySelector(".card__image");
         this._image.src = this._link;
-        this._image.alt = `Place in ${this._placename}`;
+        this._image.alt = `Place in ${this._txt}`;
         this._likeButton = this._element.querySelector(".card__like-button");
         this._deleteButton = this._element.querySelector(".card__image-trash");
-        this._element.querySelector(".card__info-title").textContent = this._placename;
+        this._element.querySelector(".card__info-title").textContent = this._txt;
         this._setEventListeners();
         return this._element;
     }

@@ -44,7 +44,7 @@ import {
   cardList,
   profileEdit,
   placePopupForm,
-  placeName,
+  name,
   placeURL,
   imgPreview,
   popupPreviewImg,
@@ -68,7 +68,7 @@ console.log(api)
 api.getInitialCards()
   .then(res => {
     cardList.renderItems(res);
-    console.log('res', res)
+    // console.log('res', res)
   });
 api.getUserInfo().then(res => {
   userInfo.setUserInfo({
@@ -77,6 +77,8 @@ api.getUserInfo().then(res => {
   })
 
 });
+
+// api.createCard(data)
 
 
 
@@ -134,6 +136,7 @@ const popupImage = new PopupWithImage(".popup-prev");
 popupImage.setEventListeners();
 
 const popupEditProfile = new PopupWithForm(".popup", (data) => {
+  console.log('data', data)
   userInfo.setUserInfo(data.name, data.title);
 });
 popupEditProfile.setEventListeners();
@@ -157,11 +160,17 @@ const placesSection = new Section({
 placesSection.renderItems();
 
 function generateCard(data) {
-  const card = new Card(data, cardTemplateSelector, () => {
-    popupImage.open(data.link, data.placename);
-  });
-  const cardElement = card.generateCard();
-  return cardElement;
+  console.log('data', data) //name link
+  api.createCard(data).then(res => {
+    const card = new Card(res, cardTemplateSelector, () => {
+      popupImage.open(res.link, res.name);
+
+    });
+    const cardElement = card.generateCard();
+    return cardElement;
+  })
+
+
 }
 
 function renderCard(data) {
