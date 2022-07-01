@@ -1,26 +1,26 @@
 const customFetch = (url, headers) => {
     fetch(url, headers)
-        .then(res => res.ok ? res.json() : Promise.reject(res.status)).catch(err => console.log(err))
+        .then(res => res.ok ? res.json() : Promise.reject(res.statusText)).catch(err => console.log())
 
 }
 class Api {
     constructor(baseUrl, headers) {
-        this.baseUrl = baseUrl;
-        this.headers = headers;
+        this._baseUrl = baseUrl;
+        this._headers = headers;
     }
 
     getInitialCards() {
-        return customFetch(`${this.baseUrl}/cards`, {
+        return customFetch(`${this._baseUrl}/cards`, {
             headers: this._headers
         })
     }
     getUserInfo() {
-        return customFetch(`${this.baseUrl}/users/me`, {
+        return customFetch(`${this._baseUrl}/users/me`, {
             headers: this._headers
         })
     }
     createCard(data) {
-        return customFetch(`${this.baseUrl}/cards`, {
+        return customFetch(`${this._baseUrl}/cards`, {
             headers: this._headers,
             method: 'POST',
             body: JSON.stringify(data)
