@@ -95,6 +95,19 @@
             </div>
         </div>
     </div>
+    <!-- delete card form -->
+    <div class="popup popup-type-delete-card">
+        <div class="popup__container">
+            <h2 class="popup__title">Are you sure?</h2>
+            <form action="submit" class="form popup__form popup__form-type-delete-card" novalidate autocomplete="off">
+                <fieldset class="form__fieldset">
+                    <button class="form__button form__button-type-delete-card" type="submit">
+                        Yes
+                    </button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 
     <template id="card-template">
         <li class="card">
@@ -102,8 +115,12 @@
             <img src="#" alt="#" class="card__image" />
             <div class="card__info">
                 <h2 class="card__info-title"></h2>
-                <button class="card__like-button" type="button" aria-label="like card"></button>
+                <div class="card__like-container">
+                    <button class="card__like-button" type="button" aria-label="like card"></button><span
+                        class="card__like-count"></span>
+                </div>
             </div>
+
         </li>
     </template>
     <div class="popup-prev popup ">
@@ -111,6 +128,27 @@
             <button class="popup__close-button" type="button"></button>
             <img src="#" alt="#" class="popup__image" />
             <p class="popup__caption"></p>
+        </div>
+    </div>
+    <!-- edit avatar popup -->
+    <div class="popup popup_type_avatar">
+        <div class="popup__container">
+            <button class="popup__close-button popup__close-button_type_avatar" type="button"></button>
+            <h2 class="popup__title">Change Profile Picture</h2>
+            <form action="submit" class="form popup__form popup__form_type_avatar" novalidate autocomplete="off">
+                <fieldset class="form__fieldset">
+                    <div class="form__input-container">
+                        <input id="avatar-input" type="url" name="link" placeholder="Profile Image link"
+                            class="form__input form__input_type_avatar" required />
+                        <span class="form__input-error avatar-input-error"></span>
+                    </div>
+                </fieldset>
+                <fieldset class="form__fieldset">
+                    <button class="form__button form__button_type_avatar" type="submit">
+                        Save
+                    </button>
+                </fieldset>
+            </form>
         </div>
     </div>
 </body>

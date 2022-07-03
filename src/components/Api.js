@@ -22,13 +22,49 @@ class Api {
             headers: this._headers
         })
     }
+    setUserInfo({
+        name,
+        about
+    }) {
+
+        return customFetch(`${this._baseUrl}/users/me`, {
+            headers: this._headers,
+            method: "PATCH",
+            body: JSON.stringify({
+                name: name,
+                about: about,
+            }),
+        })
+    }
     createCard(data) {
         return customFetch(`${this._baseUrl}/cards`, {
             headers: this._headers,
             method: 'POST',
             body: JSON.stringify(data)
         })
+
     }
+    deleteCard(cardId) {
+        return customFetch(`${this._baseUrl}/cards/${cardId}`, {
+            headers: this._headers,
+            method: 'DELETE',
+        })
+    }
+    likeCard(cardId) {
+        console.log(cardId)
+        return customFetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+            headers: this._headers,
+            method: 'PUT',
+        })
+    }
+
+    dislikeCard(cardId) {
+        return customFetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+            headers: this._headers,
+            method: 'DELETE',
+        })
+    }
+
 
     // other methods for working with the API
 }
