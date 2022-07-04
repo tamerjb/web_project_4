@@ -45,6 +45,12 @@
     border-radius: 50%;
     max-width: 120px;
     max-height: 120px;
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    visibility: hidden;
 }
 
 .profile__person {

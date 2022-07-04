@@ -69,16 +69,22 @@ import {
 
 
 
-const placesSection = new Section({
-    renderer: renderCard,
-  },
-  ".cards__list"
-);
 
 ///////////////////////////////////////////
 //////// API //////////////////////////////
 ///////////////////////////////////////////
 // console.log(api)
+const userInfo = new UserInfo({
+  nameSelector: ".profile__name",
+  jobSelector: ".profile__title",
+  avatarSelector: ".profile__image",
+});
+
+const placesSection = new Section({
+    renderer: renderCard,
+  },
+  ".cards__list"
+);
 
 
 let userId;
@@ -92,13 +98,30 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then(() => userInfo.setAvatarVisible())
   .catch((err) => console.log(err));
 
-const userInfo = new UserInfo({
-  nameSelector: ".profile__name",
-  jobSelector: ".profile__title",
-  avatarSelector: ".profile__image",
+
+const imagePopup = new PopupWithImage(".popup-prev");
+imagePopup.setEventListeners();
+
+const editPopup = new PopupWithForm(".popup-edit-profile", (data) => {
+  console.log('data =>', data)
+  api
+    .setUserInfo({
+      name: data.name,
+      about: data.title
+    })
+
+    .then((res) => {
+      userInfo.getUserInfo();
+      userInfo.setUserInfo({
+        name: res.name,
+        about: res.about
+      })
+
+      editPopup.close();
+    })
+    .catch((err) => console.log(err))
 });
-
-
+editPopup.setEventListeners();
 
 
 
@@ -132,7 +155,42 @@ const avatarFormValidator = new FormValidator(
 avatarFormValidator.enableValidation();
 
 
+///////////////////////////////////////////
+//////// Popup creation ////////////////
+/////////////////////////////////////////
 
+
+
+
+
+
+
+
+const popupAddCard = new PopupWithForm(".popup-place", (data) => {
+  api
+    .createCard(data)
+    .then((res) => {
+      renderCard(res);
+      popupAddCard.close();
+    })
+    .catch((err) => console.log(err))
+});
+const deletePopup = new PopupWithSubmit(".popup-type-delete-card");
+const avatarPopup = new PopupWithForm(".popup_type_avatar", (data) => {
+  // avatarPopup.renderLoading(true, "Saving avatar...");
+  api
+    .setUserAvatar(data.link)
+    .then((res) => {
+      userInfo.setUserAvatar(res.avatar);
+      avatarPopup.close();
+    })
+    .catch((err) => console.log(err))
+  // .finally(() => avatarPopup.renderLoading(false));
+});
+
+popupAddCard.setEventListeners();
+deletePopup.setEventListeners();
+avatarPopup.setEventListeners();
 
 ///////////////////////////////////////////
 //////// card creation ////////////////
@@ -195,6 +253,7 @@ function generateCard(data) {
 }
 
 
+
 function renderCard(data) {
   const element = generateCard(data);
   placesSection.addItem(element);
@@ -210,7 +269,7 @@ editProfileButton.addEventListener("click", () => {
   profileFormValidator.enableValidation();
   profileFormValidator.toggleButton();
   editPopup.open();
-  console.log('click')
+
 });
 
 addCardPopup.addEventListener("click", () => {
@@ -219,63 +278,6 @@ addCardPopup.addEventListener("click", () => {
 
 });
 avatar.addEventListener("click", () => {
-  avatarFormValidator.resetFormButton();
+  // avatarFormValidator.resetFormButton();
   avatarPopup.open();
 });
-
-///////////////////////////////////////////
-//////// Popup creation ////////////////
-/////////////////////////////////////////
-
-
-
-
-const imagePopup = new PopupWithImage(".popup-prev");
-
-const editPopup = new PopupWithForm(".popup-edit-profile", (data) => {
-  console.log('data =>', data)
-  api
-    .setUserInfo({
-      name: data.name,
-      about: data.title
-    })
-
-    .then((res) => {
-      userInfo.getUserInfo();
-      userInfo.setUserInfo({
-        name: res.name,
-        about: res.about
-      })
-
-      editPopup.close();
-    })
-    .catch((err) => console.log(err))
-});
-
-
-const popupAddCard = new PopupWithForm(".popup-place", (data) => {
-  api
-    .createCard(data)
-    .then((res) => {
-      renderCard(res);
-      popupAddCard.close();
-    })
-    .catch((err) => console.log(err))
-});
-const deletePopup = new PopupWithSubmit(".popup-type-delete-card");
-const avatarPopup = new PopupWithForm(".popup_type_avatar", (data) => {
-  // avatarPopup.renderLoading(true, "Saving avatar...");
-  api
-    .setUserAvatar(data.link)
-    .then((res) => {
-      userInfo.setUserAvatar(res.avatar);
-      avatarPopup.close();
-    })
-    .catch((err) => console.log(err))
-  // .finally(() => avatarPopup.renderLoading(false));
-});
-imagePopup.setEventListeners();
-editPopup.setEventListeners();
-popupAddCard.setEventListeners();
-deletePopup.setEventListeners();
-avatarPopup.setEventListeners();
