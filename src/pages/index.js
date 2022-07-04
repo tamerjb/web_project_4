@@ -92,15 +92,14 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then(([cards, userData]) => {
     userId = userData._id;
     placesSection.renderItems(cards);
-    userInfo.setUserInfo(userData.name, userData.title);
+    userInfo.setUserInfo(userData.name, userData.about);
+    console.log(userData)
     userInfo.setUserAvatar(userData.avatar);
   })
   .then(() => userInfo.setAvatarVisible())
   .catch((err) => console.log(err));
 
 
-const imagePopup = new PopupWithImage(".popup-prev");
-imagePopup.setEventListeners();
 
 
 
@@ -145,7 +144,7 @@ const editPopup = new PopupWithForm(".popup", (data) => {
   api
     .setUserInfo({
       name: data.name,
-      about: data.title
+      about: data.about
     })
 
     .then((res) => {
@@ -160,10 +159,6 @@ const editPopup = new PopupWithForm(".popup", (data) => {
     .catch((err) => console.log(err))
 });
 editPopup.setEventListeners();
-
-
-
-
 
 
 const popupAddCard = new PopupWithForm(".popup-place", (data) => {
@@ -190,6 +185,9 @@ const avatarPopup = new PopupWithForm(".popup_type_avatar", (data) => {
   // .finally(() => avatarPopup.renderLoading(false));
 });
 avatarPopup.setEventListeners();
+const imagePopup = new PopupWithImage(".popup-prev");
+imagePopup.setEventListeners();
+
 
 
 

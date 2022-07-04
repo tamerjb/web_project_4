@@ -12,6 +12,7 @@ class Api {
         this._headers = headers;
     }
 
+
     getInitialCards() {
         return customFetch(`${this._baseUrl}/cards`, {
             headers: this._headers

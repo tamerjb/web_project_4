@@ -15,10 +15,15 @@
     display: flex;
     flex-direction: column;
     opacity: 0;
-    transition: visibility 0s 0.5s, opacity 0.5s linear;
+    transition: all 0.45s ease-in-out;
     visibility: hidden;
     pointer-events: none;
     overflow: visible;
+}
+
+.popup_type_avatar {
+    display: flex;
+    flex-direction: column;
 }
 
 .popup_opened {
@@ -39,6 +44,12 @@
     border-radius: 10px;
     position: relative;
 
+}
+
+.popup-type-delete-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
