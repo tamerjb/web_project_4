@@ -102,27 +102,6 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
 const imagePopup = new PopupWithImage(".popup-prev");
 imagePopup.setEventListeners();
 
-const editPopup = new PopupWithForm(".popup-edit-profile", (data) => {
-  console.log('data =>', data)
-  api
-    .setUserInfo({
-      name: data.name,
-      about: data.title
-    })
-
-    .then((res) => {
-      userInfo.getUserInfo();
-      userInfo.setUserInfo({
-        name: res.name,
-        about: res.about
-      })
-
-      editPopup.close();
-    })
-    .catch((err) => console.log(err))
-});
-editPopup.setEventListeners();
-
 
 
 
@@ -155,11 +134,32 @@ const avatarFormValidator = new FormValidator(
 avatarFormValidator.enableValidation();
 
 
+
 ///////////////////////////////////////////
 //////// Popup creation ////////////////
 /////////////////////////////////////////
 
 
+const editPopup = new PopupWithForm(".popup", (data) => {
+  console.log('data =>', data)
+  api
+    .setUserInfo({
+      name: data.name,
+      about: data.title
+    })
+
+    .then((res) => {
+      userInfo.getUserInfo();
+      userInfo.setUserInfo({
+        name: res.name,
+        about: res.about
+      })
+
+      editPopup.close();
+    })
+    .catch((err) => console.log(err))
+});
+editPopup.setEventListeners();
 
 
 
@@ -175,7 +175,9 @@ const popupAddCard = new PopupWithForm(".popup-place", (data) => {
     })
     .catch((err) => console.log(err))
 });
-const deletePopup = new PopupWithSubmit(".popup-type-delete-card");
+popupAddCard.setEventListeners();
+
+
 const avatarPopup = new PopupWithForm(".popup_type_avatar", (data) => {
   // avatarPopup.renderLoading(true, "Saving avatar...");
   api
@@ -187,15 +189,16 @@ const avatarPopup = new PopupWithForm(".popup_type_avatar", (data) => {
     .catch((err) => console.log(err))
   // .finally(() => avatarPopup.renderLoading(false));
 });
-
-popupAddCard.setEventListeners();
-deletePopup.setEventListeners();
 avatarPopup.setEventListeners();
+
+
 
 ///////////////////////////////////////////
 //////// card creation ////////////////
 /////////////////////////////////////////
 
+const deletePopup = new PopupWithSubmit(".popup-type-delete-card");
+deletePopup.setEventListeners();
 
 function generateCard(data) {
   const card = new Card(
@@ -258,6 +261,7 @@ function renderCard(data) {
   const element = generateCard(data);
   placesSection.addItem(element);
 }
+
 ///////////////////////////////////////////
 //////// EventListeners ///////////////////
 ///////////////////////////////////////////
@@ -277,7 +281,8 @@ addCardPopup.addEventListener("click", () => {
   addFormValidator.resetValidation();
 
 });
-avatar.addEventListener("click", () => {
-  // avatarFormValidator.resetFormButton();
-  avatarPopup.open();
-});
+// avatar.addEventListener("click", () => {
+//   console.log('cluckkkk')
+//   avatarFormValidator.resetFormButton();
+//   avatarPopup.open();
+// });

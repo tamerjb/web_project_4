@@ -12,8 +12,6 @@ class Api {
         this._headers = headers;
     }
 
-
-
     getInitialCards() {
         return customFetch(`${this._baseUrl}/cards`, {
             headers: this._headers
@@ -71,7 +69,7 @@ class Api {
         })
     }
     setUserAvatar(url) {
-        return fetch(`${this._baseUrl}/users/me/avatar`, {
+        return customFetch(`${this._baseUrl}/users/me/avatar`, {
             headers: this._headers,
             method: "PATCH",
             body: JSON.stringify({
