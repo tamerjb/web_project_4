@@ -4,14 +4,14 @@
 export const profileForm = document.querySelector(".form");
 export const profile = document.querySelector(".profile");
 export const profileName = profile.querySelector(".profile__name");
-export const profilePopup = document.querySelector(".popup");
+export const profilePopup = document.querySelector(".popup-edit-profile");
 export const profileTitle = profile.querySelector(".profile__title");
 export const inputName = form.querySelector(".form__input[name='name']");
 export const inputTitle = form.querySelector(".form__input[name='title']");
 export const cards = document.querySelector(".cards");
-export const cardTemplate = document.querySelector("#card-template");
+
+
 export const cardList = cards.querySelector(".cards__list");
-export const profileEdit = document.querySelector(".popup-edit-profile");
 export const placePopupForm = document.querySelector(".popup__form-type-add-place");
 export const name = placePopupForm.querySelector(".form__input-type-place-name");
 export const placeURL = placePopupForm.querySelector(".form__input-type-place-url");
@@ -27,6 +27,8 @@ export const cardTemplateSelector = "#card-template";
 export const editProfileButton = profile.querySelector(".profile__edit-button");
 export const addCardPopup = profile.querySelector(".profile__add-button");
 export const closeButtons = document.querySelectorAll('.popup__close-button');
+export const avatar = document.querySelector(".profile__image-container");
+export const avatarForm = document.querySelector(".popup__form_type_avatar")
 
 export const initialCards = [{
         name: "Yosemite Valley",

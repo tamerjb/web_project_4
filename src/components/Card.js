@@ -4,9 +4,8 @@ export class Card {
         selector, {
             handleCardClick,
             handleCardDelete,
-            handleLikeCard
-        },
-        userId
+            handleLikeCard,
+        }, userId
     ) {
         this._text = data.name;
         this._link = data.link;
@@ -14,12 +13,10 @@ export class Card {
         this._handleCardClick = handleCardClick;
         this._handleCardDelete = handleCardDelete;
         this._handleLikeCard = handleLikeCard;
-        this._id = data.id;
+        this._id = data._id;
         this._userId = userId;
         this._ownerId = data.owner._id;
         this._likes = data.likes;
-        console.log('data.name', data.name)
-
     }
     _getCloneFromTemplate = () => {
         const cardElement = document
@@ -31,8 +28,8 @@ export class Card {
 
     _setEventListeners = () => {
 
-        this._likeButton.addEventListener("click", (evt) => {
-            this._handleLikeCard(evt);
+        this._likeButton.addEventListener("click", () => {
+            this._handleLikeCard(this._id);
         });
         this._image.addEventListener("click", () => {
             this._handleCardClick(this._id);

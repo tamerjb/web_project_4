@@ -17,14 +17,16 @@
     </header>
     <main class="content">
         <section class="profile">
-            <img src="<%=require('../images/avatar.jpg')%>" alt="Jacques cousteau" class="profile__image">
+            <div class="profile__image-container">
+                <img src="#" alt=" Profile Picture" class="profile__image">
+            </div>
             <div class="profile__info">
                 <div class="profile__person">
-                    <h1 class="profile__name">Jacques Cousteau</h1>
+                    <h1 class="profile__name">Tamir</h1>
                     <button class="profile__edit-button" type="button">
                     </button>
                 </div>
-                <p class="profile__title">Explorer</p>
+                <p class="profile__title">hello</p>
             </div>
             <button class="profile__add-button" type="button"></button>
         </section>
@@ -34,9 +36,9 @@
 
     </main>
     <footer class="footer">
-        <p class="footer__copyrights">© 2021 Around The U.S.</p>
+        <p class="footer__copyrights">© 2022 Around The U.S.</p>
     </footer>
-    <div class="popup ">
+    <div class="popup popup-edit-profile ">
         <div class="popup-edit-profile ">
             <button class="popup__close-button" type="button"></button>
 
@@ -65,7 +67,7 @@
         </div>
     </div>
 
-    <div class="popup popup-place ">
+    <div class="popup popup-place">
         <div class="popup-place">
             <button class="popup__close-button " type="button"></button>
 
@@ -95,19 +97,7 @@
             </div>
         </div>
     </div>
-    <!-- delete card form -->
-    <div class="popup popup-type-delete-card">
-        <div class="popup__container">
-            <h2 class="popup__title">Are you sure?</h2>
-            <form action="submit" class="form popup__form popup__form-type-delete-card" novalidate autocomplete="off">
-                <fieldset class="form__fieldset">
-                    <button class="form__button form__button-type-delete-card" type="submit">
-                        Yes
-                    </button>
-                </fieldset>
-            </form>
-        </div>
-    </div>
+
 
     <template id="card-template">
         <li class="card">
@@ -115,6 +105,7 @@
             <img src="#" alt="#" class="card__image" />
             <div class="card__info">
                 <h2 class="card__info-title"></h2>
+
                 <div class="card__like-container">
                     <button class="card__like-button" type="button" aria-label="like card"></button><span
                         class="card__like-count"></span>
@@ -146,6 +137,19 @@
                 <fieldset class="form__fieldset">
                     <button class="form__button form__button_type_avatar" type="submit">
                         Save
+                    </button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <!-- delete card form -->
+    <div class="popup popup-type-delete-card">
+        <div class="popup__container">
+            <h2 class="popup__title">Are you sure?</h2>
+            <form action="submit" class="form popup__form popup__form-type-delete-card" novalidate autocomplete="off">
+                <fieldset class="form__fieldset">
+                    <button class="form__button form__button-type-delete-card" type="submit">
+                        Yes
                     </button>
                 </fieldset>
             </form>

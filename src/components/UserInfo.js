@@ -12,17 +12,17 @@ export class UserInfo {
     getUserInfo() {
         return {
             name: this._profileName.textContent,
-            title: this._profileJob.textContent,
+            about: this._profileJob.textContent,
         }
     }
     setUserInfo({
         name,
-        job
+        about
     }) {
         this._profileName.textContent = name;
-        this._profileJob.textContent = job;
+        this._profileJob.textContent = about;
     }
-    setUserAvatar(avatar) {
+    setUserAvatar(avatar) { // here adds the avatar to DOM after fetching from server
         this._avatar.src = avatar;
     }
 
