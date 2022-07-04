@@ -281,8 +281,7 @@ addCardPopup.addEventListener("click", () => {
   addFormValidator.resetValidation();
 
 });
-// avatar.addEventListener("click", () => {
-//   console.log('cluckkkk')
-//   avatarFormValidator.resetFormButton();
-//   avatarPopup.open();
-// });
+avatar.addEventListener("click", () => {
+  avatarFormValidator.resetValidation();
+  avatarPopup.open();
+});
