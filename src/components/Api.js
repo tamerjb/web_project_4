@@ -1,8 +1,6 @@
-const customFetch = (url, headers) => {
-    return fetch(url, headers)
-        .then(res => res.ok ? res.json() : Promise.reject(res.statusText)).catch(err => console.log())
-
-}
+import {
+    customFetch
+} from "../utils/constants";
 class Api {
     constructor({
         baseUrl,
