@@ -48,6 +48,9 @@ import {
 import {
   api
 } from "../components/Api"
+import {
+  data
+} from "autoprefixer";
 
 // profileTitle,
 // inputName,
@@ -88,7 +91,11 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then(([cards, userData]) => {
     userId = userData._id;
     placesSection.renderItems(cards);
-    userInfo.setUserInfo(userData.name, userData.about);
+    userInfo.setUserInfo({
+      name: userData.name,
+      about: userData.about
+    });
+    console.log('userData', userData)
     userInfo.setUserAvatar(userData.avatar);
   })
   .then(() => userInfo.setAvatarVisible())
@@ -129,6 +136,7 @@ avatarFormValidator.enableValidation();
 
 
 const editPopup = new PopupWithForm(".popup", (data) => {
+  editPopup.renderLoading(true, "Saving...");
   api
     .setUserInfo({
       name: data.name,
@@ -144,25 +152,26 @@ const editPopup = new PopupWithForm(".popup", (data) => {
 
       editPopup.close();
     })
-    .catch((err) => console.log(err))
+    .catch((err) => console.log(err)).finally(() => editPopup.renderLoading(false));
 });
 editPopup.setEventListeners();
 
 
 const popupAddCard = new PopupWithForm(".popup-place", (data) => {
+  popupAddCard.renderLoading(true, "Creating...");
   api
     .createCard(data)
     .then((res) => {
       renderCard(res);
       popupAddCard.close();
     })
-    .catch((err) => console.log(err))
+    .catch((err) => console.log(err)).finally(() => popupAddCard.renderLoading(false));
 });
 popupAddCard.setEventListeners();
 
 
 const avatarPopup = new PopupWithForm(".popup_type_avatar", (data) => {
-  // avatarPopup.renderLoading(true, "Saving avatar...");
+  avatarPopup.renderLoading(true, "Saving avatar...");
   api
     .setUserAvatar(data.link)
     .then((res) => {
@@ -170,7 +179,7 @@ const avatarPopup = new PopupWithForm(".popup_type_avatar", (data) => {
       avatarPopup.close();
     })
     .catch((err) => console.log(err))
-  // .finally(() => avatarPopup.renderLoading(false));
+    .finally(() => avatarPopup.renderLoading(false));
 });
 avatarPopup.setEventListeners();
 const imagePopup = new PopupWithImage(".popup-prev");
