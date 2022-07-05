@@ -36,44 +36,40 @@ import {
 } from "../components/PopupWithImage.js";
 
 import {
-  profileForm,
-  profile,
-  profileName,
   profilePopup,
-  profileTitle,
-  inputName,
-  inputTitle,
-  cards,
-  cardTemplate,
-  cardList,
-  profileEdit,
-  placePopupForm,
-  name,
-  placeURL,
-  imgPreview,
-  popupPreviewImg,
-  popupPreviewCaption,
+  profile,
   placeForm,
   cardTemplateSelector,
   editProfileButton,
   addCardPopup,
-  closeButtons,
-  initialCards,
   avatar,
   avatarForm,
-
 } from "../utils/constants"
 import {
   api
 } from "../components/Api"
 
-
-
-
+// profileTitle,
+// inputName,
+// inputTitle,
+// cards,
+// cardTemplate,
+// cardList,
+// profileEdit,
+// placePopupForm,
+// name,
+// placeURL,
+// imgPreview,
+// popupPreviewImg,
+// popupPreviewCaption,
+//   closeButtons,
+//   initialCards,
+//     profileForm,
+//
+//     profileName,
 ///////////////////////////////////////////
 //////// API //////////////////////////////
 ///////////////////////////////////////////
-// console.log(api)
 const userInfo = new UserInfo({
   nameSelector: ".profile__name",
   jobSelector: ".profile__title",
@@ -93,17 +89,10 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
     userId = userData._id;
     placesSection.renderItems(cards);
     userInfo.setUserInfo(userData.name, userData.about);
-    console.log(userData)
     userInfo.setUserAvatar(userData.avatar);
   })
   .then(() => userInfo.setAvatarVisible())
   .catch((err) => console.log(err));
-
-
-
-
-
-
 
 
 ///////////////////////////////////////////
@@ -140,7 +129,6 @@ avatarFormValidator.enableValidation();
 
 
 const editPopup = new PopupWithForm(".popup", (data) => {
-  console.log('data =>', data)
   api
     .setUserInfo({
       name: data.name,
@@ -204,7 +192,6 @@ function generateCard(data) {
     cardTemplateSelector, {
       handleCardClick: () => {
         imagePopup.open(data.link, data.name);
-
       },
       handleCardDelete: (id) => {
         deletePopup.open();
@@ -230,7 +217,6 @@ function generateCard(data) {
             .likeCard(id)
             .then((res) => {
               card.likeCard(res.likes);
-              console.log('res', res)
             })
             .catch((err) => console.log(err));
 
@@ -252,8 +238,6 @@ function generateCard(data) {
   return cardElement;
 
 }
-
-
 
 function renderCard(data) {
   const element = generateCard(data);

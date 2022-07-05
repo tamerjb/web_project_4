@@ -27,10 +27,6 @@ class Api {
         name,
         about
     }) {
-        console.log('test', {
-            name,
-            about
-        })
 
         return customFetch(`${this._baseUrl}/users/me`, {
             headers: this._headers,
@@ -56,7 +52,6 @@ class Api {
         })
     }
     likeCard(cardId) {
-        // console.log(cardId)
         return customFetch(`${this._baseUrl}/cards/likes/${cardId}`, {
             headers: this._headers,
             method: 'PUT',
