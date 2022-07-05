@@ -33,7 +33,6 @@
         <section class="cards">
             <ul class="cards__list"></ul>
         </section>
-
     </main>
     <footer class="footer">
         <p class="footer__copyrights">© 2022 Around The U.S.</p>
@@ -41,10 +40,8 @@
     <div class="popup popup-edit-profile ">
         <div class="popup-edit-profile ">
             <button class="popup__close-button" type="button"></button>
-
+            <!-- edit Profile popup -->
             <div class="popup__container">
-
-
                 <h2 class="popup__title">Edit profile</h2>
                 <form action="submit" class="form popup__form" name="form">
                     <fieldset class="form__fieldset">
@@ -66,7 +63,7 @@
             </div>
         </div>
     </div>
-
+    <!-- add newCard popup -->
     <div class="popup popup-place">
         <div class="popup-place">
             <button class="popup__close-button " type="button"></button>
@@ -100,14 +97,13 @@
         </div>
     </div>
 
-
+    <!-- Card Template -->
     <template id="card-template">
         <li class="card">
             <button type="button" aria-label="delete card" class="card__image-trash"></button>
             <img src="#" alt="#" class="card__image" />
             <div class="card__info">
                 <h2 class="card__info-title"></h2>
-
                 <div class="card__like-container">
                     <button class="card__like-button" type="button" aria-label="like card"></button><span
                         class="card__like-count"></span>
@@ -116,6 +112,7 @@
 
         </li>
     </template>
+    <!-- Preview image popup -->
     <div class="popup-prev popup ">
         <div class="popup__preview-container">
             <button class="popup__close-button" type="button"></button>
@@ -126,7 +123,7 @@
     <!-- edit avatar popup -->
     <div class="popup popup_type_avatar">
         <div>
-            <button class="popup__close-button popup__close-button_type_avatar" type="button"></button>
+            <button class="popup__close-button" type="button"></button>
             <div class="popup__container">
                 <h2 class="popup__title">Change Profile Picture </h2>
                 <form action="submit" class="form popup__form popup__form_type_avatar" novalidate autocomplete="off">
@@ -149,7 +146,7 @@
     <!-- delete card form -->
     <div class="popup popup-type-delete-card ">
         <div>
-            <button class="popup__close-button " type="button"></button>
+            <button class="popup__close-button" type="button"></button>
             <div class="popup__container">
                 <h2 class="popup__title">Are you sure?</h2>
                 <form action="submit" class="form popup__form popup__form-type-delete-card" novalidate

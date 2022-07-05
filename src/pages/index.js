@@ -95,7 +95,6 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
       name: userData.name,
       about: userData.about
     });
-    console.log('userData', userData)
     userInfo.setUserAvatar(userData.avatar);
   })
   .then(() => userInfo.setAvatarVisible())
