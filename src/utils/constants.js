@@ -12,11 +12,7 @@ export const addCardPopup = profile.querySelector(".profile__add-button");
 export const avatar = document.querySelector(".profile__image-container");
 export const avatarForm = document.querySelector(".popup__form_type_avatar");
 
-export const customFetch = (url, headers) => {
-    return fetch(url, headers)
-        .then(res => res.ok ? res.json() : Promise.reject(res.statusText)).catch(err => console.log())
 
-}
 // export const profileForm = document.querySelector(".form");
 // export const profileName = profile.querySelector(".profile__name");
 // export const profileTitle = profile.querySelector(".profile__title");

@@ -62,6 +62,7 @@
     display: flex;
     justify-content: baseline;
     flex-direction: column;
+    z-index: -1;
 }
 
 .popup-edit-profile {

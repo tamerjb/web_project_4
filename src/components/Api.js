@@ -1,6 +1,3 @@
-import {
-    customFetch
-} from "../utils/constants";
 class Api {
     constructor({
         baseUrl,
@@ -9,67 +6,74 @@ class Api {
         this._baseUrl = baseUrl;
         this._headers = headers;
     }
+    _customFetch(res) {
+
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Error ${res.status}`);
+    }
 
 
     getInitialCards() {
-        return customFetch(`${this._baseUrl}/cards`, {
+        return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers
-        })
+        }).then(this._customFetch);
     }
     getUserInfo() {
-        return customFetch(`${this._baseUrl}/users/me`, {
+        return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers
-        })
+        }).then(this._customFetch);
     }
     setUserInfo({
         name,
         about
     }) {
 
-        return customFetch(`${this._baseUrl}/users/me`, {
+        return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers,
             method: "PATCH",
             body: JSON.stringify({
                 name: name,
                 about: about,
             }),
-        })
+        }).then(this._customFetch);
     }
     createCard(data) {
-        return customFetch(`${this._baseUrl}/cards`, {
+        return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers,
             method: 'POST',
             body: JSON.stringify(data)
-        })
+        }).then(this._customFetch);
 
     }
     deleteCard(cardId) {
-        return customFetch(`${this._baseUrl}/cards/${cardId}`, {
+        return fetch(`${this._baseUrl}/cards/${cardId}`, {
             headers: this._headers,
             method: 'DELETE',
-        })
+        }).then(this._customFetch);
     }
     likeCard(cardId) {
-        return customFetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+        return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
             headers: this._headers,
             method: 'PUT',
-        })
+        }).then(this._customFetch);
     }
 
     dislikeCard(cardId) {
-        return customFetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+        return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
             headers: this._headers,
             method: 'DELETE',
-        })
+        }).then(this._customFetch);
     }
     setUserAvatar(url) {
-        return customFetch(`${this._baseUrl}/users/me/avatar`, {
+        return fetch(`${this._baseUrl}/users/me/avatar`, {
             headers: this._headers,
             method: "PATCH",
             body: JSON.stringify({
                 avatar: url,
             }),
-        })
+        }).then(this._customFetch);
     }
 
 

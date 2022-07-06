@@ -30,7 +30,7 @@ import {
 } from "../components/UserInfo.js";
 
 
-import "../styles/index.css";
+import "./index.css";
 import {
   PopupWithImage
 } from "../components/PopupWithImage.js";
@@ -143,7 +143,6 @@ const editPopup = new PopupWithForm(".popup", (data) => {
     })
 
     .then((res) => {
-      userInfo.getUserInfo();
       userInfo.setUserInfo({
         name: res.name,
         about: res.about
@@ -260,8 +259,7 @@ function renderCard(data) {
 editProfileButton.addEventListener("click", () => {
   const info = userInfo.getUserInfo();
   editPopup.setInputValues(info);
-  profileFormValidator.enableValidation();
-  profileFormValidator.toggleButton();
+  profileFormValidator.resetValidation();
   editPopup.open();
 
 });
