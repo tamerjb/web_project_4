@@ -75,12 +75,13 @@
     background-color: transparent;
     background-image: url("../images/icons/close_icon.svg");
     background-repeat: no-repeat;
-    background-size: 30px 30px;
     border: none;
-    padding: 20px;
     display: flex;
     margin: 0 0 0 auto;
     overflow: visible;
+    min-height: 30px;
+    min-width: 30px;
+    padding: 0 0 2em 1.8em;
 
 }
 
