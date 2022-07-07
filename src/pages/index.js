@@ -52,24 +52,6 @@ import {
   data
 } from "autoprefixer";
 
-// profileTitle,
-// inputName,
-// inputTitle,
-// cards,
-// cardTemplate,
-// cardList,
-// profileEdit,
-// placePopupForm,
-// name,
-// placeURL,
-// imgPreview,
-// popupPreviewImg,
-// popupPreviewCaption,
-//   closeButtons,
-//   initialCards,
-//     profileForm,
-//
-//     profileName,
 ///////////////////////////////////////////
 //////// API //////////////////////////////
 ///////////////////////////////////////////
@@ -147,9 +129,7 @@ const editPopup = new PopupWithForm(".popup", (data) => {
         name: res.name,
         about: res.about
       })
-
-      editPopup.close();
-    })
+    }).then(() => editPopup.close())
     .catch((err) => console.log(err)).finally(() => editPopup.renderLoading(false));
 });
 editPopup.setEventListeners();
@@ -161,8 +141,8 @@ const popupAddCard = new PopupWithForm(".popup-place", (data) => {
     .createCard(data)
     .then((res) => {
       renderCard(res);
-      popupAddCard.close();
-    })
+      //
+    }).then(() => popupAddCard.close())
     .catch((err) => console.log(err)).finally(() => popupAddCard.renderLoading(false));
 });
 popupAddCard.setEventListeners();
@@ -174,8 +154,8 @@ const avatarPopup = new PopupWithForm(".popup_type_avatar", (data) => {
     .setUserAvatar(data.link)
     .then((res) => {
       userInfo.setUserAvatar(res.avatar);
-      avatarPopup.close();
-    })
+
+    }).then(() => avatarPopup.close())
     .catch((err) => console.log(err))
     .finally(() => avatarPopup.renderLoading(false));
 });
