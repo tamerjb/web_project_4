@@ -182,8 +182,8 @@ function generateCard(data) {
       },
       handleCardDelete: (id) => {
         deletePopup.open();
-
         deletePopup.setAction(() => {
+          deletePopup.renderLoading(true, "Deleting...");
           // submit modal
           api
             .deleteCard(id)
@@ -193,7 +193,7 @@ function generateCard(data) {
             .then(() => {
               deletePopup.close();
             })
-            .catch((err) => console.log(err));
+            .catch((err) => console.log(err)).finally(() => deletePopup.renderLoading(false));
         });
       },
       handleLikeCard: (id) => {

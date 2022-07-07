@@ -5,6 +5,7 @@ import {
 export class PopupWithSubmit extends Popup {
     setAction(action) {
         this._submitHandler = action;
+
     }
 
     setEventListeners() {
