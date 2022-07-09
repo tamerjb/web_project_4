@@ -36,12 +36,12 @@ import {
 } from "../components/PopupWithImage.js";
 
 import {
-  profilePopup,
+  editProfilePopup,
   profile,
-  placeForm,
+  newPlaceForm,
   cardTemplateSelector,
   editProfileButton,
-  addCardPopup,
+  addCardButton,
   avatar,
   avatarForm,
 } from "../utils/constants"
@@ -96,11 +96,11 @@ const validateConfigs = {
 
 const profileFormValidator = new FormValidator(
   validateConfigs,
-  profilePopup
+  editProfilePopup
 );
 profileFormValidator.enableValidation();
 
-const addFormValidator = new FormValidator(validateConfigs, placeForm);
+const addFormValidator = new FormValidator(validateConfigs, newPlaceForm);
 addFormValidator.enableValidation();
 
 const avatarFormValidator = new FormValidator(
@@ -244,7 +244,7 @@ editProfileButton.addEventListener("click", () => {
 
 });
 
-addCardPopup.addEventListener("click", () => {
+addCardButton.addEventListener("click", () => {
   popupAddCard.open();
   addFormValidator.resetValidation();
 

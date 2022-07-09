@@ -14,10 +14,4 @@ export class Section {
     addItem(item) {
         this._container.prepend(item);
     }
-
-
-    // addItem(item) {
-    //     const card = this._renderer(item)
-    //     this._container.prepend(card);
-    // }
 }
