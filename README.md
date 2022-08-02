@@ -9,13 +9,17 @@ a project that showcases a trip to the US by a particular traveller. All the ele
 
 ### Project features:
 
-- Flat BEM file structure.
-- Javascript DOM .
-- Flexbox Layout
-- Semantic HTML5.
-- Responsive and Adaptive Layout.
-- Grid Layout.
-- Position items.
+
+- Flat BEM file structure
+- Responsive and Adaptive development
+- Grid 
+- Flexbox 
+- Semantic HTML5
+- Positioning
+- API 
+- Javascript  
+- Webpack, Postcss, Babel
+- Javascript DOM manipulation
 
 # Github Pages Link:
 
